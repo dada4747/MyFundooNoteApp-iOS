@@ -9,23 +9,95 @@
 /* Begin PBXBuildFile section */
 		848A047D281C6984008F6E66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047C281C6984008F6E66 /* AppDelegate.swift */; };
 		848A047F281C6984008F6E66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047E281C6984008F6E66 /* SceneDelegate.swift */; };
-		848A0481281C6984008F6E66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A0480281C6984008F6E66 /* ViewController.swift */; };
-		848A0484281C6984008F6E66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A0482281C6984008F6E66 /* Main.storyboard */; };
 		848A0487281C6984008F6E66 /* MyFundooNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848A0485281C6984008F6E66 /* MyFundooNote.xcdatamodeld */; };
 		848A0489281C698E008F6E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848A0488281C698E008F6E66 /* Assets.xcassets */; };
 		848A048C281C698E008F6E66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A048A281C698E008F6E66 /* LaunchScreen.storyboard */; };
+		848A0494281C6AB9008F6E66 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A0493281C6AB9008F6E66 /* HomeViewController.swift */; };
+		848A0497281C6BA5008F6E66 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A0496281C6BA5008F6E66 /* AuthService.swift */; };
+		848A049B281C7465008F6E66 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A049A281C7465008F6E66 /* LoginViewController.swift */; };
+		848A049D281C7479008F6E66 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A049C281C7479008F6E66 /* RegistrationViewController.swift */; };
+		848A049F281C7603008F6E66 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A049E281C7603008F6E66 /* Login.swift */; };
+		848A04A2281C761F008F6E66 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04A1281C761F008F6E66 /* Registration.swift */; };
+		848A04A4281C768B008F6E66 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04A3281C768B008F6E66 /* Extension.swift */; };
+		848A04A6281C7732008F6E66 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04A5281C7732008F6E66 /* CustomTextField.swift */; };
+		848A04A9281C7787008F6E66 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04A8281C7787008F6E66 /* InputContainerView.swift */; };
+		848A04B1281C87EA008F6E66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848A04B0281C87EA008F6E66 /* GoogleService-Info.plist */; };
+		848A04B6281E9360008F6E66 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04B5281E9360008F6E66 /* SideMenuViewController.swift */; };
+		848A04B8281E9382008F6E66 /* SideMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04B7281E9382008F6E66 /* SideMenuDelegate.swift */; };
+		848A04BA281E9392008F6E66 /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04B9281E9392008F6E66 /* SideMenuItem.swift */; };
+		848A04BC281E93B5008F6E66 /* SideMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04BB281E93B5008F6E66 /* SideMenuItemCell.swift */; };
+		848A04BF281EA921008F6E66 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04BE281EA921008F6E66 /* ContentViewController.swift */; };
+		848A04C1281EA940008F6E66 /* ContentViewControllerPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04C0281EA940008F6E66 /* ContentViewControllerPresentation.swift */; };
+		848A04C3281EA970008F6E66 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04C2281EA970008F6E66 /* ContainerViewController.swift */; };
+		848A04C6281EA9D8008F6E66 /* ContainerViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04C5281EA9D8008F6E66 /* ContainerViewComposer.swift */; };
+		848A04C8281EAA9E008F6E66 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04C7281EAA9E008F6E66 /* SettingsViewController.swift */; };
+		848A04CA281EAAB4008F6E66 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04C9281EAAB4008F6E66 /* ArchiveViewController.swift */; };
+		848A04CC281EAAD0008F6E66 /* RemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04CB281EAAD0008F6E66 /* RemindersViewController.swift */; };
+		848A04CE281EAB9E008F6E66 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04CD281EAB9D008F6E66 /* AboutViewController.swift */; };
+		848A04D1281FA934008F6E66 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D0281FA934008F6E66 /* AddNoteViewController.swift */; };
+		848A04D3281FD15F008F6E66 /* FirebaseNoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */; };
+		848A04D5281FD1EB008F6E66 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D4281FD1EB008F6E66 /* NoteModel.swift */; };
+		848A04D728201825008F6E66 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D628201825008F6E66 /* Helper.swift */; };
+		848A04D928201981008F6E66 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D828201981008F6E66 /* NotesCell.swift */; };
+		848F3F8D2824C28800C7217C /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F3F8C2824C28700C7217C /* ProfileImageView.swift */; };
+		848F3F8F2824C2F400C7217C /* CustomContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F3F8E2824C2F400C7217C /* CustomContainerView.swift */; };
+		849114D82824414F00D4C04F /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114D72824414F00D4C04F /* UserProfile.swift */; };
+		849114DA28244DCA00D4C04F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114D928244DCA00D4C04F /* ProfileViewController.swift */; };
+		849114DC282474B000D4C04F /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114DB282474B000D4C04F /* TitleLabel.swift */; };
+		849114DE2824753200D4C04F /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114DD2824753200D4C04F /* BodyLabel.swift */; };
+		849114E02824760300D4C04F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114DF2824760300D4C04F /* CustomButton.swift */; };
+		84968A882824D7DD0025CF9A /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968A872824D7DD0025CF9A /* CustomTextView.swift */; };
+		84968A8A2825124A0025CF9A /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968A892825124A0025CF9A /* TextButton.swift */; };
+		CF2F8F443330E65509A41039 /* Pods_MyFundooNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB724E13A2BE976805BACEA2 /* Pods_MyFundooNote.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36C8321EB1F0FCD7788BBB89 /* Pods-MyFundooNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.debug.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.debug.xcconfig"; sourceTree = "<group>"; };
+		507C3B21348810A97DF96555 /* Pods-MyFundooNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.release.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.release.xcconfig"; sourceTree = "<group>"; };
 		848A0479281C6984008F6E66 /* MyFundooNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFundooNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A047C281C6984008F6E66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A047E281C6984008F6E66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		848A0480281C6984008F6E66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		848A0483281C6984008F6E66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		848A0486281C6984008F6E66 /* MyFundooNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFundooNote.xcdatamodel; sourceTree = "<group>"; };
 		848A0488281C698E008F6E66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848A048B281C698E008F6E66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848A048D281C698E008F6E66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		848A0493281C6AB9008F6E66 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		848A0496281C6BA5008F6E66 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		848A049A281C7465008F6E66 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		848A049C281C7479008F6E66 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		848A049E281C7603008F6E66 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		848A04A1281C761F008F6E66 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		848A04A3281C768B008F6E66 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		848A04A5281C7732008F6E66 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		848A04A8281C7787008F6E66 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		848A04B0281C87EA008F6E66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		848A04B5281E9360008F6E66 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		848A04B7281E9382008F6E66 /* SideMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegate.swift; sourceTree = "<group>"; };
+		848A04B9281E9392008F6E66 /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
+		848A04BB281E93B5008F6E66 /* SideMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItemCell.swift; sourceTree = "<group>"; };
+		848A04BE281EA921008F6E66 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		848A04C0281EA940008F6E66 /* ContentViewControllerPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewControllerPresentation.swift; sourceTree = "<group>"; };
+		848A04C2281EA970008F6E66 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		848A04C5281EA9D8008F6E66 /* ContainerViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewComposer.swift; sourceTree = "<group>"; };
+		848A04C7281EAA9E008F6E66 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		848A04C9281EAAB4008F6E66 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		848A04CB281EAAD0008F6E66 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
+		848A04CD281EAB9D008F6E66 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		848A04D0281FA934008F6E66 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNoteService.swift; sourceTree = "<group>"; };
+		848A04D4281FD1EB008F6E66 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		848A04D628201825008F6E66 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		848A04D828201981008F6E66 /* NotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
+		848F3F8C2824C28700C7217C /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		848F3F8E2824C2F400C7217C /* CustomContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerView.swift; sourceTree = "<group>"; };
+		849114D72824414F00D4C04F /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		849114D928244DCA00D4C04F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		849114DB282474B000D4C04F /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		849114DD2824753200D4C04F /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
+		849114DF2824760300D4C04F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		84968A872824D7DD0025CF9A /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		84968A892825124A0025CF9A /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		BB724E13A2BE976805BACEA2 /* Pods_MyFundooNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFundooNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2F8F443330E65509A41039 /* Pods_MyFundooNote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +117,8 @@
 			children = (
 				848A047B281C6984008F6E66 /* MyFundooNote */,
 				848A047A281C6984008F6E66 /* Products */,
+				D82E201C04DDE8D7FF75ACD0 /* Pods */,
+				DB8AFBF9A45B9C9721D5EF71 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +133,179 @@
 		848A047B281C6984008F6E66 /* MyFundooNote */ = {
 			isa = PBXGroup;
 			children = (
-				848A047C281C6984008F6E66 /* AppDelegate.swift */,
-				848A047E281C6984008F6E66 /* SceneDelegate.swift */,
-				848A0480281C6984008F6E66 /* ViewController.swift */,
-				848A0482281C6984008F6E66 /* Main.storyboard */,
+				84DF38AF28252823008E4470 /* Supports */,
+				848A04C4281EA9B0008F6E66 /* Composer */,
+				848A04B2281E810F008F6E66 /* Services */,
+				848A04B3281E8133008F6E66 /* Extensions */,
+				848A04A7281C7769008F6E66 /* View */,
+				848A04A0281C7609008F6E66 /* Model */,
+				848A0495281C6AED008F6E66 /* Controllers */,
 				848A0488281C698E008F6E66 /* Assets.xcassets */,
+				848A04B0281C87EA008F6E66 /* GoogleService-Info.plist */,
 				848A048A281C698E008F6E66 /* LaunchScreen.storyboard */,
 				848A048D281C698E008F6E66 /* Info.plist */,
 				848A0485281C6984008F6E66 /* MyFundooNote.xcdatamodeld */,
 			);
 			path = MyFundooNote;
+			sourceTree = "<group>";
+		};
+		848A0495281C6AED008F6E66 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				848A04BD281E9F71008F6E66 /* Container */,
+				848A04B4281E9336008F6E66 /* SideMenuController */,
+				848A04CF281F975D008F6E66 /* AuthControllers */,
+				848A0493281C6AB9008F6E66 /* HomeViewController.swift */,
+				848A04C7281EAA9E008F6E66 /* SettingsViewController.swift */,
+				848A04C9281EAAB4008F6E66 /* ArchiveViewController.swift */,
+				848A04CB281EAAD0008F6E66 /* RemindersViewController.swift */,
+				848A04CD281EAB9D008F6E66 /* AboutViewController.swift */,
+				848A04D0281FA934008F6E66 /* AddNoteViewController.swift */,
+				849114D928244DCA00D4C04F /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		848A04A0281C7609008F6E66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				848A049E281C7603008F6E66 /* Login.swift */,
+				848A04A1281C761F008F6E66 /* Registration.swift */,
+				848A04D4281FD1EB008F6E66 /* NoteModel.swift */,
+				849114D72824414F00D4C04F /* UserProfile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		848A04A7281C7769008F6E66 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84DF38AD28251AB3008E4470 /* Cell */,
+				84968A8C282515F40025CF9A /* Buttons */,
+				84968A8B282515E20025CF9A /* Labels */,
+				84DF38AE28251AF2008E4470 /* Containers */,
+				848F3F8C2824C28700C7217C /* ProfileImageView.swift */,
+				84968A872824D7DD0025CF9A /* CustomTextView.swift */,
+				848A04A5281C7732008F6E66 /* CustomTextField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		848A04B2281E810F008F6E66 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				848A0496281C6BA5008F6E66 /* AuthService.swift */,
+				848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		848A04B3281E8133008F6E66 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				848A04D628201825008F6E66 /* Helper.swift */,
+				848A04A3281C768B008F6E66 /* Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		848A04B4281E9336008F6E66 /* SideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				848A04B5281E9360008F6E66 /* SideMenuViewController.swift */,
+				848A04B7281E9382008F6E66 /* SideMenuDelegate.swift */,
+				848A04B9281E9392008F6E66 /* SideMenuItem.swift */,
+				848A04BB281E93B5008F6E66 /* SideMenuItemCell.swift */,
+			);
+			path = SideMenuController;
+			sourceTree = "<group>";
+		};
+		848A04BD281E9F71008F6E66 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				848A04BE281EA921008F6E66 /* ContentViewController.swift */,
+				848A04C0281EA940008F6E66 /* ContentViewControllerPresentation.swift */,
+				848A04C2281EA970008F6E66 /* ContainerViewController.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		848A04C4281EA9B0008F6E66 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				848A04C5281EA9D8008F6E66 /* ContainerViewComposer.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
+		848A04CF281F975D008F6E66 /* AuthControllers */ = {
+			isa = PBXGroup;
+			children = (
+				848A049C281C7479008F6E66 /* RegistrationViewController.swift */,
+				848A049A281C7465008F6E66 /* LoginViewController.swift */,
+			);
+			path = AuthControllers;
+			sourceTree = "<group>";
+		};
+		84968A8B282515E20025CF9A /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				849114DB282474B000D4C04F /* TitleLabel.swift */,
+				849114DD2824753200D4C04F /* BodyLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		84968A8C282515F40025CF9A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				849114DF2824760300D4C04F /* CustomButton.swift */,
+				84968A892825124A0025CF9A /* TextButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		84DF38AD28251AB3008E4470 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				848A04D828201981008F6E66 /* NotesCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		84DF38AE28251AF2008E4470 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				848A04A8281C7787008F6E66 /* InputContainerView.swift */,
+				848F3F8E2824C2F400C7217C /* CustomContainerView.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		84DF38AF28252823008E4470 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				848A047C281C6984008F6E66 /* AppDelegate.swift */,
+				848A047E281C6984008F6E66 /* SceneDelegate.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		D82E201C04DDE8D7FF75ACD0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36C8321EB1F0FCD7788BBB89 /* Pods-MyFundooNote.debug.xcconfig */,
+				507C3B21348810A97DF96555 /* Pods-MyFundooNote.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DB8AFBF9A45B9C9721D5EF71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB724E13A2BE976805BACEA2 /* Pods_MyFundooNote.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +315,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 848A0490281C698E008F6E66 /* Build configuration list for PBXNativeTarget "MyFundooNote" */;
 			buildPhases = (
+				3E4A0527A9B4A4DEC324AB3D /* [CP] Check Pods Manifest.lock */,
 				848A0475281C6984008F6E66 /* Sources */,
 				848A0476281C6984008F6E66 /* Frameworks */,
 				848A0477281C6984008F6E66 /* Resources */,
+				5E6EC0CA26475FB82FFBD8CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,35 +370,103 @@
 			files = (
 				848A048C281C698E008F6E66 /* LaunchScreen.storyboard in Resources */,
 				848A0489281C698E008F6E66 /* Assets.xcassets in Resources */,
-				848A0484281C6984008F6E66 /* Main.storyboard in Resources */,
+				848A04B1281C87EA008F6E66 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E4A0527A9B4A4DEC324AB3D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyFundooNote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E6EC0CA26475FB82FFBD8CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		848A0475281C6984008F6E66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84968A882824D7DD0025CF9A /* CustomTextView.swift in Sources */,
+				848A049B281C7465008F6E66 /* LoginViewController.swift in Sources */,
+				848A04A9281C7787008F6E66 /* InputContainerView.swift in Sources */,
+				84968A8A2825124A0025CF9A /* TextButton.swift in Sources */,
+				848A04C8281EAA9E008F6E66 /* SettingsViewController.swift in Sources */,
+				848A04BF281EA921008F6E66 /* ContentViewController.swift in Sources */,
+				849114E02824760300D4C04F /* CustomButton.swift in Sources */,
+				848A04A6281C7732008F6E66 /* CustomTextField.swift in Sources */,
+				848A04D928201981008F6E66 /* NotesCell.swift in Sources */,
+				848A04C6281EA9D8008F6E66 /* ContainerViewComposer.swift in Sources */,
+				848A04CE281EAB9E008F6E66 /* AboutViewController.swift in Sources */,
+				848A04B6281E9360008F6E66 /* SideMenuViewController.swift in Sources */,
+				848A04D1281FA934008F6E66 /* AddNoteViewController.swift in Sources */,
+				848A0494281C6AB9008F6E66 /* HomeViewController.swift in Sources */,
+				848A04D5281FD1EB008F6E66 /* NoteModel.swift in Sources */,
+				848F3F8F2824C2F400C7217C /* CustomContainerView.swift in Sources */,
+				849114DA28244DCA00D4C04F /* ProfileViewController.swift in Sources */,
+				848A04C1281EA940008F6E66 /* ContentViewControllerPresentation.swift in Sources */,
+				849114DC282474B000D4C04F /* TitleLabel.swift in Sources */,
 				848A0487281C6984008F6E66 /* MyFundooNote.xcdatamodeld in Sources */,
-				848A0481281C6984008F6E66 /* ViewController.swift in Sources */,
+				849114D82824414F00D4C04F /* UserProfile.swift in Sources */,
+				848A04D3281FD15F008F6E66 /* FirebaseNoteService.swift in Sources */,
+				848A04B8281E9382008F6E66 /* SideMenuDelegate.swift in Sources */,
+				848A04D728201825008F6E66 /* Helper.swift in Sources */,
+				848A0497281C6BA5008F6E66 /* AuthService.swift in Sources */,
+				848A04A2281C761F008F6E66 /* Registration.swift in Sources */,
+				848F3F8D2824C28800C7217C /* ProfileImageView.swift in Sources */,
+				848A04CA281EAAB4008F6E66 /* ArchiveViewController.swift in Sources */,
+				849114DE2824753200D4C04F /* BodyLabel.swift in Sources */,
+				848A04A4281C768B008F6E66 /* Extension.swift in Sources */,
+				848A04C3281EA970008F6E66 /* ContainerViewController.swift in Sources */,
+				848A04BC281E93B5008F6E66 /* SideMenuItemCell.swift in Sources */,
+				848A04CC281EAAD0008F6E66 /* RemindersViewController.swift in Sources */,
+				848A049D281C7479008F6E66 /* RegistrationViewController.swift in Sources */,
+				848A04BA281E9392008F6E66 /* SideMenuItem.swift in Sources */,
 				848A047D281C6984008F6E66 /* AppDelegate.swift in Sources */,
 				848A047F281C6984008F6E66 /* SceneDelegate.swift in Sources */,
+				848A049F281C7603008F6E66 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		848A0482281C6984008F6E66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				848A0483281C6984008F6E66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		848A048A281C698E008F6E66 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +594,7 @@
 		};
 		848A0491281C698E008F6E66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C8321EB1F0FCD7788BBB89 /* Pods-MyFundooNote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,7 +605,6 @@
 				INFOPLIST_FILE = MyFundooNote/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -314,6 +622,7 @@
 		};
 		848A0492281C698E008F6E66 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 507C3B21348810A97DF96555 /* Pods-MyFundooNote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,7 +633,6 @@
 				INFOPLIST_FILE = MyFundooNote/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -18,7 +18,6 @@ class RegistrationViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "pro") , for: .normal)
         button.tintColor = .label
-        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
         return button
@@ -108,9 +107,8 @@ class RegistrationViewController: UIViewController {
     func configureUI() {
         view.backgroundColor = .secondarySystemBackground
         configureSignUpButton()
-//        configureGradientLayer()
-        
         view.addSubview(plusPhotoButton)
+        plusPhotoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         plusPhotoButton.centerX(inView: view)
         plusPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         plusPhotoButton.setDimensions(height: 200, width: 200)

@@ -6,24 +6,28 @@
 //
 
 import UIKit
+import UserNotifications
 import CloudKit
 
 class AddNoteViewController: UIViewController {
+    
+    
     // MARK: - Variables
-    var pine            : UIImage?    = UIImage(systemName: "pin.circle")
-    var reminder        : UIImage?    = UIImage(systemName: "bell.circle")
-    var archive         : UIImage?    = UIImage(systemName: "archivebox.circle")
-    var delete          : UIImage?    = UIImage(systemName: "trash.circle")
-    var backImage       : UIImage?    = UIImage(systemName: "arrow.backward.circle")
-    var unarchiveImage  : UIImage?    = UIImage(systemName: "archivebox.circle.fill")
+    var note            : NoteModel?
+    var trashView       : Bool?
+    let pine            : UIImage?    = UIImage(systemName: "pin.circle")
+    let reminder        : UIImage?    = UIImage(systemName: "bell.circle")
+    let archive         : UIImage?    = UIImage(systemName: "archivebox.circle")
+    let delete          : UIImage?    = UIImage(systemName: "trash.circle")
+    let backImage       : UIImage?    = UIImage(systemName: "arrow.backward.circle")
+    let unarchiveImage  : UIImage?    = UIImage(systemName: "archivebox.circle.fill")
     
-    let titleLabel              = TitleLabel(textAlignment: .left, fontSize: 23)
-    let descLabel               = BodyLabel(textAlignment: .left)
-    let titleTextView           = CustomTextView(placeholder: "Title", fontSize: 23)
-    let descriptionTextView     = CustomTextView(placeholder: "Description", fontSize: 17)
+    let titleLabel                    = TitleLabel(textAlignment: .left, fontSize: 23)
+    let descLabel                     = BodyLabel(textAlignment: .left)
+    let titleTextView                 = CustomTextView(placeholder: "Title", fontSize: 23)
+    let descriptionTextView           = CustomTextView(placeholder: "Description", fontSize: 17)
     
-    var note      : NoteModel?
-    var trashView : Bool?
+   
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -39,14 +43,11 @@ class AddNoteViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-      
     }
-    
     // MARK: - ConfugureUI
     
     func configureView() {
         view.backgroundColor = .secondarySystemBackground
-        
         configureNavigationBar()
         configureTitleTextView()
         configureTitleLabel()
@@ -55,33 +56,64 @@ class AddNoteViewController: UIViewController {
     }
     
     func configureNavigationBar(){
-        let pineButtonItem      = UIBarButtonItem(image: pine, style: .plain, target: self, action: #selector(pineTapped))
-        let reminderButtonItem  = UIBarButtonItem(image: reminder, style: .plain, target: self, action: #selector(reminderTapped))
-        let archiveButtonItem   = UIBarButtonItem(image: archive, style: .plain, target: self, action: #selector(handleArchiveTapped))
-        let deleteButtonItem    = UIBarButtonItem(image: delete, style: .plain, target: self, action: #selector(handleDeleteTapped))
-        let unArchiveButtonItem = UIBarButtonItem(image: unarchiveImage, style: .plain, target: self, action: #selector(handleUnArchiveTapped))
-        let backButtonItem      = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(handleBackButton))
+        let pineButtonItem      = UIBarButtonItem(image: pine,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(pineTapped))
+        let reminderButtonItem  = UIBarButtonItem(image: reminder,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(reminderTapped))
+        let archiveButtonItem   = UIBarButtonItem(image: archive,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(handleArchiveTapped))
+        let deleteButtonItem    = UIBarButtonItem(image: delete,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(handleDeleteTapped))
+        let unArchiveButtonItem = UIBarButtonItem(image: unarchiveImage,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(handleUnArchiveTapped))
+        let backButtonItem      = UIBarButtonItem(image: backImage,
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(handleBackButton))
         
-        navigationController?.navigationBar.tintColor = .label
         navigationItem.setLeftBarButton(backButtonItem, animated: false)
         
         if(trashView != nil && trashView == true) {
-            navigationItem.setRightBarButtonItems([deleteButtonItem, pineButtonItem, reminderButtonItem,unArchiveButtonItem], animated: false)
+            navigationItem.setRightBarButtonItems([deleteButtonItem,
+                                                   pineButtonItem,
+                                                   reminderButtonItem,
+                                                   unArchiveButtonItem], animated: false)
         } else if(note?.id != nil) {
-            navigationItem.setRightBarButtonItems([deleteButtonItem, pineButtonItem, reminderButtonItem,archiveButtonItem], animated: false)
+            navigationItem.setRightBarButtonItems([deleteButtonItem,
+                                                   pineButtonItem,
+                                                   reminderButtonItem,
+                                                   archiveButtonItem], animated: false)
             
         } else {
-            navigationItem.setRightBarButtonItems([pineButtonItem, reminderButtonItem,archiveButtonItem], animated: false)
+            navigationItem.setRightBarButtonItems([pineButtonItem,
+                                                   reminderButtonItem,
+                                                   archiveButtonItem], animated: false)
         }
     }
     
     func configureTitleTextView() {
         view.addSubview(titleTextView)
-        titleTextView.delegate = self
-        titleTextView.isScrollEnabled = false
+        titleTextView.delegate                                  = self
+        titleTextView.isScrollEnabled                           = false
         titleTextView.sizeToFit()
         titleTextView.translatesAutoresizingMaskIntoConstraints = false
-        titleTextView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20,height: 50)
+        titleTextView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                             left: view.leftAnchor,
+                             right: view.rightAnchor,
+                             paddingTop: 20,
+                             paddingLeft: 20,
+                             paddingRight: 20,
+                             height: 50)
     }
     
     func configureTitleLabel() {
@@ -95,7 +127,6 @@ class AddNoteViewController: UIViewController {
     
     func configureDescriptionTextView(){
         view.addSubview(descriptionTextView)
-        
         descriptionTextView.delegate = self
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.sizeToFit()
@@ -118,19 +149,24 @@ class AddNoteViewController: UIViewController {
     @objc func pineTapped(){
         
     }
+    
     @objc func reminderTapped(){
-        
-        
+        DispatchQueue.main.async {
+            let provc = AddReminderViewController()
+            provc.delegate = self
+            provc.modalPresentationStyle  = .overFullScreen
+            provc.modalTransitionStyle    = .crossDissolve
+            self.present(provc, animated: true)
+        }
     }
+    
     @objc func handleUnArchiveTapped(){
         if(note?.id != nil) {
             FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: false, isNote: note!.isNote, isReminder: note!.isReminder) { error in
                 if error == nil {
                     self.navigationController?.popViewController(animated: true)
-                    
                 }
             }
-            
         }
     }
     @objc func handleArchiveTapped(){
@@ -139,18 +175,16 @@ class AddNoteViewController: UIViewController {
         if !title.isEmpty || !desc.isEmpty {
             print("in archive tapp not empty")
             if(note?.id != nil) {
-                
                 FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: true, isNote: note!.isNote, isReminder: note!.isReminder) { error in
                     if error == nil {
                         self.navigationController?.popViewController(animated: true)
-
+                        
                     } else {
                         print("error found")
                     }
                 }
                 return
             } else {
-                print("archive not empty")
                 FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: false, isArchieved: true, isNote: false)
                 self.navigationController?.popViewController(animated: true)
             }
@@ -163,7 +197,6 @@ class AddNoteViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }else {
                 // MARK: - Todo
-                print("show pop up")
             }
         }
     }
@@ -173,7 +206,7 @@ class AddNoteViewController: UIViewController {
         let title = titleTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let desc = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if(trashView == nil && note?.id == nil) {
-
+            
             if !title.isEmpty || !desc.isEmpty {
                 FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: false, isArchieved: false, isNote: true)
                 navigationController?.popViewController(animated: true)
@@ -228,12 +261,64 @@ extension AddNoteViewController: UITextViewDelegate {
             descLabel.isHidden = !textView.text.isEmpty
         }
     }
-
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text as NSString).rangeOfCharacter(from: CharacterSet.newlines).location == NSNotFound {
             return true
         }
         textView.resignFirstResponder()
         return true
+    }
+}
+
+extension AddNoteViewController: ReminderControllerDelegate {
+    func setReminder(title: String, body:String, targetDate: Date) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.sound = .default
+        content.body = body
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if error != nil {
+            }
+        }
+        let targetDate1 = targetDate
+        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate1), repeats: false)
+        let request  = UNNotificationRequest(identifier: "The note Reminder", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { err in
+            if err != nil{
+                print("something went is wrog happen")
+            }
+        }
+    }
+    
+    func handleRemider(date: Date) {
+        let title = titleTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let desc = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if(trashView == nil && note?.id == nil) {
+            if !title.isEmpty || !desc.isEmpty {
+                FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: true, isArchieved: false, isNote: true)
+                
+                DispatchQueue.main.async{
+                    self.setReminder(title: title, body: desc, targetDate: date)
+                    
+                }
+                navigationController?.popViewController(animated: true)
+            }
+            
+        } else if (note?.id != nil ){
+            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: false, isNote: note!.isNote, isReminder: true) { error in
+                if error == nil {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                DispatchQueue.main.async{
+                    self.setReminder(title: title, body: desc, targetDate: date)
+                }
+            }
+        } else if(title.isEmpty && desc.isEmpty) {
+            navigationController?.popViewController(animated: true)
+        }
+        navigationController?.popViewController(animated: true)
     }
 }

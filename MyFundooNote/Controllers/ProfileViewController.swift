@@ -13,7 +13,8 @@ protocol ProfileControllerDelegate: class {
     func handleLogout()
 }
 
-class ProfileViewController: UIViewController{
+class ProfileViewController: UIViewController {
+    
     weak var delegate   : ProfileControllerDelegate?
 
     let containerView       = CustomContainerView()
@@ -28,24 +29,31 @@ class ProfileViewController: UIViewController{
     }
     
     private let dismissButton : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
+        let button       = UIButton()
         button.tintColor = .label
+        button.setImage(UIImage(systemName: "multiply.circle"),
+                        for: .normal)
         button.imageView?.setDimensions(height: 28, width: 28)
         return button
     }()
 
     private let privacyPolicyButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Privacy Policy ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.label])
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "Privacy Policy ",
+                                                        attributes: [.font: UIFont.systemFont(ofSize: 16),
+                                                                     .foregroundColor: UIColor.label])
+        button.setAttributedTitle(attributedTitle,
+                                  for: .normal)
         return button
     }()
     
     private let termAndServiceButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Term And Service ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.label])
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        let attributedTitle = NSMutableAttributedString(string: "Term And Service ",
+                                                        attributes: [.font: UIFont.systemFont(ofSize: 16),
+                                                                     .foregroundColor: UIColor.label])
+        button.setAttributedTitle(attributedTitle,
+                                  for: .normal)
         return button
     }()
     
@@ -63,53 +71,73 @@ class ProfileViewController: UIViewController{
         configurePrivacyPolicyButton()
         configureLogoutButton()
     }
-
-   
+    
     // MARK: - UI Configuration
         
     func configureContainerView() {
         view.addSubview(containerView)
-        containerView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 100, paddingLeft: 20, paddingRight: 20, height: 400)
+        containerView.anchor(top: view.topAnchor,
+                             left: view.leftAnchor,
+                             right: view.rightAnchor,
+                             paddingTop: 100,
+                             paddingLeft: 20,
+                             paddingRight: 20,
+                             height: 400)
     }
     
     func configureTitleLabel() {
         containerView.addSubview(titleLabel)
         titleLabel.text = "Google Keep"
         titleLabel.centerX(inView: containerView)
-        titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,constant: -20).isActive = true
-        titleLabel.anchor(top: containerView.topAnchor, paddingTop: 20, height: 28)
+        titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
+                                            constant: 20).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
+                                             constant: -20).isActive = true
+        titleLabel.anchor(top: containerView.topAnchor, paddingTop: 20,
+                          height: 28)
     }
     
     func configureProfileImageView() {
         containerView.addSubview(profileImageView)
         profileImageView.centerX(inView:containerView)
-        profileImageView.anchor(top: titleLabel.bottomAnchor, paddingTop: 20, width: 100, height: 100)
+        profileImageView.anchor(top: titleLabel.bottomAnchor,
+                                paddingTop: 20,
+                                width: 100,
+                                height: 100)
         profileImageView.layer.cornerRadius = profileImageView.layer.frame.height / 2
     }
     
     func configureFullNameLabel(){
         containerView.addSubview(fullNameLabel)
         fullNameLabel.centerX(inView: containerView)
-        fullNameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 20, height: 20)
+        fullNameLabel.anchor(top: profileImageView.bottomAnchor,
+                             paddingTop: 20, height: 20)
     }
     
     func configureEmailIdLabel(){
         containerView.addSubview(emailIdLabel)
         emailIdLabel.centerX(inView: containerView)
-        emailIdLabel.anchor(top: fullNameLabel.bottomAnchor, paddingTop: 10, height: 20)
+        emailIdLabel.anchor(top: fullNameLabel.bottomAnchor,
+                            paddingTop: 10,
+                            height: 20)
     }
     
     func configureTermAndServiceButton(){
         containerView.addSubview(termAndServiceButton)
         termAndServiceButton.addTarget(self, action: #selector(handlePrivacyTapped), for: .touchUpInside)
-        termAndServiceButton.anchor( bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingBottom: 20, paddingRight: 32)
+        termAndServiceButton.anchor( bottom: containerView.bottomAnchor,
+                                     right: containerView.rightAnchor,
+                                     paddingBottom: 20,
+                                     paddingRight: 32)
     }
     
     func configurePrivacyPolicyButton(){
         containerView.addSubview(privacyPolicyButton)
         privacyPolicyButton.addTarget(self, action: #selector(handlePrivacyTapped), for: .touchUpInside)
-        privacyPolicyButton.anchor(left: containerView.leftAnchor, bottom: containerView.bottomAnchor, paddingLeft: 32, paddingBottom: 20)
+        privacyPolicyButton.anchor(left: containerView.leftAnchor,
+                                   bottom: containerView.bottomAnchor,
+                                   paddingLeft: 32,
+                                   paddingBottom: 20)
     }
     
     func configureLogoutButton(){

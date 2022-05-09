@@ -9,24 +9,21 @@ import UIKit
 import Firebase
 
 class ContentViewController: UIViewController {
-    // MARK: - Variables Declarations
     
-    var collectionView: UICollectionView?
+    var collectionView: UICollectionView!
     
     weak var delegate: SideMenuDelegate?
-
+    
     var barButtonImage      : UIImage?  = UIImage(systemName: "line.horizontal.3")
     var profileButtonImage  : UIImage?  = UIImage(systemName: "person.circle")
     var gridViewButtonImage : UIImage?  = UIImage(systemName: "square.grid.2x2")
     var listViewButtonImage : UIImage?  = UIImage(systemName: "rectangle.grid.1x2")
-  
+    
     var searchController                = UISearchController(searchResultsController: nil)
     var hasMoreNotes                    = true
     var isLoading                       = false
     var isSearching                     = false
     var isListView                      = false
-    var gridFlowLayout                  = GridFlowLayout()
-    var listFlowLayout                  = ListFlowLayout()
     
     // MARK: - Life Cycle Method
     override func viewDidLoad() {
@@ -34,6 +31,8 @@ class ContentViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         authenticateUser()
         configureView()
+        configureSeachController()
+        configureCollectionView()
     }
     func logout() {
         do {
@@ -53,9 +52,30 @@ class ContentViewController: UIViewController {
         navigationController?.navigationBar.tintColor           = .label
         navigationItem.setLeftBarButton(barButtonItem, animated: false)
         navigationItem.setRightBarButtonItems([profileButtonItem, gridViewButtonItem], animated: false)
-
-        navigationItem.hidesSearchBarWhenScrolling               = false
         definesPresentationContext                               = true
+        navigationItem.hidesSearchBarWhenScrolling               = false
+        
+    }
+    func configureCollectionView() {
+        collectionView           = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: UICollectionViewFlowLayout())
+        
+        view.addSubview(collectionView!)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                              left: view.leftAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 10,
+                              paddingLeft: 0,
+                              paddingBottom: 10,
+                              paddingRight: 0)
+        collectionView.register(MyNoteCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor  = .secondarySystemBackground
+        collectionView.frame            = view.bounds
+    }
+    func configureSeachController() {
         searchController.loadViewIfNeeded()
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType                 = UIReturnKeyType.done
@@ -117,11 +137,7 @@ class ContentViewController: UIViewController {
         let profileButtonItem   = UIBarButtonItem(image: profileButtonImage, style: .plain, target: self, action: #selector(profileTapped))
         let gridViewButtonItem  = UIBarButtonItem(image: gridViewButtonImage, style: .plain, target: self, action: #selector(gridButtonTapped))
         self.navigationItem.setRightBarButtonItems([profileButtonItem,gridViewButtonItem], animated: true)
-//        let layout = isListView ? gridFlowLayout : listFlowLayout
-//        UIView.animate(withDuration: 0.2) { () -> Void in
-//            self.collectionView?.collectionViewLayout.invalidateLayout()
-//            self.collectionView?.setCollectionViewLayout(layout, animated: true)
-//        }
+        
         collectionView?.reloadData()
     }
 }

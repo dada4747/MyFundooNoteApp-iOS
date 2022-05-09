@@ -20,7 +20,7 @@ final class ContainerViewComposer {
                          viewController: .embed(homeViewController)),
             SideMenuItem(icon: UIImage(systemName: "person"),
                          name: "Reminders",
-                         viewController: .push(remindersViewController)),
+                         viewController: .embed(remindersViewController)),
             SideMenuItem(icon: UIImage(systemName: "trash.fill"),
                          name: "Archive",
                          viewController: .embed(archiveViewController)),

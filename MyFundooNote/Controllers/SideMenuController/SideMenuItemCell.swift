@@ -15,12 +15,14 @@ class SideMenuItemCell: UITableViewCell {
 
     private var itemIcon: UIImageView = {
         let imageView = UIImageView()
+        imageView.tintColor = .secondaryLabel
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     private var itemLabel: UILabel = {
         let label = UILabel()
+
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

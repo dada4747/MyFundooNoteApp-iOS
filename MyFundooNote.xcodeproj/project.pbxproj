@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		848123C4282790E500BB640E /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848123C3282790E500BB640E /* AddReminderViewController.swift */; };
 		848A047D281C6984008F6E66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047C281C6984008F6E66 /* AppDelegate.swift */; };
 		848A047F281C6984008F6E66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047E281C6984008F6E66 /* SceneDelegate.swift */; };
 		848A0487281C6984008F6E66 /* MyFundooNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848A0485281C6984008F6E66 /* MyFundooNote.xcdatamodeld */; };
@@ -37,7 +38,6 @@
 		848A04D1281FA934008F6E66 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D0281FA934008F6E66 /* AddNoteViewController.swift */; };
 		848A04D3281FD15F008F6E66 /* FirebaseNoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */; };
 		848A04D5281FD1EB008F6E66 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D4281FD1EB008F6E66 /* NoteModel.swift */; };
-		848A04D728201825008F6E66 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D628201825008F6E66 /* Helper.swift */; };
 		848A04D928201981008F6E66 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A04D828201981008F6E66 /* NotesCell.swift */; };
 		848F3F8D2824C28800C7217C /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F3F8C2824C28700C7217C /* ProfileImageView.swift */; };
 		848F3F8F2824C2F400C7217C /* CustomContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F3F8E2824C2F400C7217C /* CustomContainerView.swift */; };
@@ -54,6 +54,7 @@
 /* Begin PBXFileReference section */
 		36C8321EB1F0FCD7788BBB89 /* Pods-MyFundooNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.debug.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.debug.xcconfig"; sourceTree = "<group>"; };
 		507C3B21348810A97DF96555 /* Pods-MyFundooNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.release.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.release.xcconfig"; sourceTree = "<group>"; };
+		848123C3282790E500BB640E /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 		848A0479281C6984008F6E66 /* MyFundooNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFundooNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A047C281C6984008F6E66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A047E281C6984008F6E66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		848A04D0281FA934008F6E66 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNoteService.swift; sourceTree = "<group>"; };
 		848A04D4281FD1EB008F6E66 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
-		848A04D628201825008F6E66 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		848A04D828201981008F6E66 /* NotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
 		848F3F8C2824C28700C7217C /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		848F3F8E2824C2F400C7217C /* CustomContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerView.swift; sourceTree = "<group>"; };
@@ -156,12 +156,13 @@
 				848A04B4281E9336008F6E66 /* SideMenuController */,
 				848A04CF281F975D008F6E66 /* AuthControllers */,
 				848A0493281C6AB9008F6E66 /* HomeViewController.swift */,
-				848A04C7281EAA9E008F6E66 /* SettingsViewController.swift */,
 				848A04C9281EAAB4008F6E66 /* ArchiveViewController.swift */,
 				848A04CB281EAAD0008F6E66 /* RemindersViewController.swift */,
 				848A04CD281EAB9D008F6E66 /* AboutViewController.swift */,
 				848A04D0281FA934008F6E66 /* AddNoteViewController.swift */,
 				849114D928244DCA00D4C04F /* ProfileViewController.swift */,
+				848123C3282790E500BB640E /* AddReminderViewController.swift */,
+				848A04C7281EAA9E008F6E66 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -203,7 +204,6 @@
 		848A04B3281E8133008F6E66 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				848A04D628201825008F6E66 /* Helper.swift */,
 				848A04A3281C768B008F6E66 /* Extension.swift */,
 			);
 			path = Extensions;
@@ -424,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84968A882824D7DD0025CF9A /* CustomTextView.swift in Sources */,
+				848123C4282790E500BB640E /* AddReminderViewController.swift in Sources */,
 				848A049B281C7465008F6E66 /* LoginViewController.swift in Sources */,
 				848A04A9281C7787008F6E66 /* InputContainerView.swift in Sources */,
 				84968A8A2825124A0025CF9A /* TextButton.swift in Sources */,
@@ -446,7 +447,6 @@
 				849114D82824414F00D4C04F /* UserProfile.swift in Sources */,
 				848A04D3281FD15F008F6E66 /* FirebaseNoteService.swift in Sources */,
 				848A04B8281E9382008F6E66 /* SideMenuDelegate.swift in Sources */,
-				848A04D728201825008F6E66 /* Helper.swift in Sources */,
 				848A0497281C6BA5008F6E66 /* AuthService.swift in Sources */,
 				848A04A2281C761F008F6E66 /* Registration.swift in Sources */,
 				848F3F8D2824C28800C7217C /* ProfileImageView.swift in Sources */,

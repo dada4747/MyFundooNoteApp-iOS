@@ -15,13 +15,14 @@ class HomeViewController: ContentViewController {
     var filteredNotes   : [NoteModel]   = []
     
     let addNoteButton : UIButton = {
-        let button = UIButton()
+        let button                  = UIButton()
         button.layer.cornerRadius   = 10
         button.layer.masksToBounds  = true
+        button.tintColor            = .label
         button.setWidth(width: 60)
         button.setHeight(height: 60)
-        button.tintColor = .label
-        button.setBackgroundImage(UIImage(systemName: "plus.app.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "plus.app.fill"),
+                                  for: .normal)
         return button
     }()
     
@@ -29,9 +30,11 @@ class HomeViewController: ContentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotes()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        configureCollectionView()
+        searchController.searchResultsUpdater   = self
+        searchController.searchBar.delegate     = self
+        collectionView.dataSource               = self
+        collectionView.delegate                 = self
+        collectionView.reloadData()
         configureAddNoteButton()
     }
     
@@ -42,32 +45,17 @@ class HomeViewController: ContentViewController {
     }
     
     // MARK: - Configuration UI
-    func configureCollectionView(){
-        collectionView      = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        guard let collectionView = collectionView else {
-            return
-        }
-        
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 10, paddingRight: 0)
-        collectionView.register(MyNoteCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor  = .secondarySystemBackground
-        collectionView.dataSource       = self
-        collectionView.delegate         = self
-        collectionView.frame            = view.bounds
-        collectionView.reloadData()
-    }
     
     //MARK: - Methods
     func fetchNotes(){
         FirebaseNotsService.shared.fetchNotes{ notes in
+            print(notes)
             if notes.count < 10 {
-                self.hasMoreNotes = false
+                self.hasMoreNotes   = false
             } else {
-                self.hasMoreNotes = true
+                self.hasMoreNotes   = true
             }
-            self.notes       = notes
+            self.notes              = notes
             self.collectionView?.reloadData()
         }
     }
@@ -197,8 +185,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let estimatedFrameDesc = NSString(string: note.desc).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: descFont, context: nil)
         let estimatedFrameTitle = NSString(string: note.title).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleFont, context: nil)
         if !isListView {
-            let heightVal = self.view.frame.height
-            let widthVal = self.view.frame.width
             return CGSize(width: bounds.width/2 - 10   , height:  estimatedFrameTitle.height + estimatedFrameDesc.height + 20  )
         } else {
             return CGSize(width: bounds.width - 10 , height: estimatedFrameTitle.height + estimatedFrameDesc.height + 20)

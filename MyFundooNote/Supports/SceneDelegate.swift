@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let container = ContainerViewComposer.makeContainer()
-//        let nav = UINavigationController(rootViewController: HomeViewController())
         window?.rootViewController = container
         window?.makeKeyAndVisible()
     }

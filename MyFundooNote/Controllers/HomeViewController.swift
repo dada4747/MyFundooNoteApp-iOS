@@ -40,37 +40,65 @@ class HomeViewController: ContentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("back in home view ")
         fetchNotes()
-        collectionView?.reloadData()
+      
+
+        collectionView.reloadData()
     }
     
+   
     // MARK: - Configuration UI
     
     //MARK: - Methods
     func fetchNotes(){
-        FirebaseNotsService.shared.fetchNotes{ notes in
-            print(notes)
-            if notes.count < 10 {
-                self.hasMoreNotes   = false
-            } else {
-                self.hasMoreNotes   = true
+            FirebaseNotsService.shared.fetchNotes{ notes in
+                print(notes)
+                if notes.count < 10 {
+                    self.hasMoreNotes   = false
+                } else {
+                    self.hasMoreNotes   = true
+                }
+                self.notes              = notes
+                self.collectionView?.reloadData()
             }
-            self.notes              = notes
-            self.collectionView?.reloadData()
         }
-    }
-    
-    func fetchMoreNotes() {
-        FirebaseNotsService.shared.fetchMoreNotes { notes in
-            if notes.count < 10 {
-                self.hasMoreNotes = false
-            } else {
-                self.hasMoreNotes = true
+        
+        func fetchMoreNotes() {
+            FirebaseNotsService.shared.fetchMoreNotes { notes in
+                if notes.count < 10 {
+                    self.hasMoreNotes = false
+                } else {
+                    self.hasMoreNotes = true
+                }
+                self.notes.append(contentsOf: notes)
+                self.collectionView?.reloadData()
             }
-            self.notes.append(contentsOf: notes)
-            self.collectionView?.reloadData()
         }
-    }
+    //    func fetchNotes(){
+//        FirebaseNotsService.shared.fetchNotes{ [weak self] notes in
+//            guard let self = self else { return }
+//            self.updateUI(with: notes)
+//        }
+//    }
+//
+//    func fetchMoreNotes() {
+//        FirebaseNotsService.shared.fetchMoreNotes {[weak self] notes in
+//            guard let self = self else { return }
+//            self.updateUI(with: notes)
+//        }
+//    }
+//
+//    func updateUI(with notes: [NoteModel]) {
+//        if notes.count < 10 {
+//            self.hasMoreNotes = false
+//        } else {
+//            self.hasMoreNotes = true
+//        }
+//        self.notes = notes
+////        self.notes.append(contentsOf: notes)
+//        DispatchQueue.main.async { self.collectionView?.reloadData() }
+//    }
     
     func configureAddNoteButton() {
         view.addSubview(addNoteButton)
@@ -121,7 +149,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print(hasMoreNotes)
         if( hasMoreNotes && indexPath.row == notes.count-1  ) {
             fetchMoreNotes()
         } else {

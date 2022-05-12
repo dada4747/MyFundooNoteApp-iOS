@@ -27,7 +27,7 @@ class AddNoteViewController: UIViewController {
     let titleTextView                 = CustomTextView(placeholder: "Title", fontSize: 23)
     let descriptionTextView           = CustomTextView(placeholder: "Description", fontSize: 17)
     
-   
+    var keyboardHeight: CGFloat = 0.0
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -39,10 +39,39 @@ class AddNoteViewController: UIViewController {
             descLabel.isHidden      = true
         }
         configureView()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        hideKeyboardWhenTappedAround()
+    }
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.keyboardHeight = keyboardRectangle.height
+            descriptionBottomConstraints.isActive = false
+            descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -(keyboardHeight + 10))
+             descriptionBottomConstraints.isActive = true
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    @objc func keyboardWillHide(notification: Notification) {
+        descriptionBottomConstraints.isActive = false
+        descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -20)
+         descriptionBottomConstraints.isActive = true
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     // MARK: - ConfugureUI
     
@@ -124,6 +153,7 @@ class AddNoteViewController: UIViewController {
         titleLabel.centerY(inView: titleTextView)
         titleLabel.anchor(left: titleTextView.leftAnchor, right: titleTextView.rightAnchor, paddingLeft: 10, paddingRight: 10, height: 40)
     }
+    var descriptionBottomConstraints: NSLayoutConstraint!
     
     func configureDescriptionTextView(){
         view.addSubview(descriptionTextView)
@@ -131,7 +161,17 @@ class AddNoteViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.sizeToFit()
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextView.anchor(top: titleTextView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
+//        descriptionTextView.anchor(top: titleTextView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 20, paddingBottom:  20, paddingRight: 20)
+//        descriptionTextView.anchor(top: titleTextView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
+        NSLayoutConstraint.activate([
+            descriptionTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 10),
+            descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+        
+        ])
+       descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+        descriptionBottomConstraints.isActive = true
+        
     }
     
     func configureDescriptionLabel() {
@@ -139,8 +179,7 @@ class AddNoteViewController: UIViewController {
         descLabel.text = "Description"
         descLabel.textColor = .secondaryLabel
         descLabel.translatesAutoresizingMaskIntoConstraints = false
-        descLabel.centerY(inView: descriptionTextView)
-        descLabel.anchor(left: descriptionTextView.leftAnchor, right: descriptionTextView.rightAnchor, paddingLeft: 10, paddingRight: 10, height: 40)
+        descLabel.anchor(top:descriptionTextView.topAnchor, left: descriptionTextView.leftAnchor,right: descriptionTextView.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingRight: 10, height: 40)
     }
     
     // MARK: - Functions
@@ -261,7 +300,15 @@ extension AddNoteViewController: UITextViewDelegate {
             descLabel.isHidden = !textView.text.isEmpty
         }
     }
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if(textView == titleTextView && !textView.text.isEmpty) {
+            textView.constraints.forEach { constraint in
+                if constraint.firstAttribute == .height {
+                    constraint.constant = 100
+                }
+            }
+        }
+    }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text as NSString).rangeOfCharacter(from: CharacterSet.newlines).location == NSNotFound {
             return true

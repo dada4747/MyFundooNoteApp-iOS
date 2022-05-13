@@ -48,6 +48,7 @@
 		849114E02824760300D4C04F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849114DF2824760300D4C04F /* CustomButton.swift */; };
 		84968A882824D7DD0025CF9A /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968A872824D7DD0025CF9A /* CustomTextView.swift */; };
 		84968A8A2825124A0025CF9A /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968A892825124A0025CF9A /* TextButton.swift */; };
+		84EE2609282D1E0F0033E4FE /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE2608282D1E0E0033E4FE /* PinterestLayout.swift */; };
 		CF2F8F443330E65509A41039 /* Pods_MyFundooNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB724E13A2BE976805BACEA2 /* Pods_MyFundooNote.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		849114DF2824760300D4C04F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		84968A872824D7DD0025CF9A /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		84968A892825124A0025CF9A /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		84EE2608282D1E0E0033E4FE /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		BB724E13A2BE976805BACEA2 /* Pods_MyFundooNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFundooNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -188,6 +190,7 @@
 				848F3F8C2824C28700C7217C /* ProfileImageView.swift */,
 				84968A872824D7DD0025CF9A /* CustomTextView.swift */,
 				848A04A5281C7732008F6E66 /* CustomTextField.swift */,
+				84EE2608282D1E0E0033E4FE /* PinterestLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				848A04C1281EA940008F6E66 /* ContentViewControllerPresentation.swift in Sources */,
 				849114DC282474B000D4C04F /* TitleLabel.swift in Sources */,
 				848A0487281C6984008F6E66 /* MyFundooNote.xcdatamodeld in Sources */,
+				84EE2609282D1E0F0033E4FE /* PinterestLayout.swift in Sources */,
 				849114D82824414F00D4C04F /* UserProfile.swift in Sources */,
 				848A04D3281FD15F008F6E66 /* FirebaseNoteService.swift in Sources */,
 				848A04B8281E9382008F6E66 /* SideMenuDelegate.swift in Sources */,

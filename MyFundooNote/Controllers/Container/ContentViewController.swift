@@ -32,7 +32,7 @@ class ContentViewController: UIViewController {
         authenticateUser()
         configureView()
         configureSeachController()
-        configureCollectionView()
+//        configureCollectionView()
     }
     func logout() {
         do {
@@ -47,33 +47,33 @@ class ContentViewController: UIViewController {
         let barButtonItem       = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(menuTapped))
         
         let profileButtonItem   = UIBarButtonItem(image: profileButtonImage, style: .plain, target: self, action: #selector(profileTapped))
-        let gridViewButtonItem  = UIBarButtonItem(image: gridViewButtonImage, style: .plain, target: self, action: #selector(gridButtonTapped))
+        let listViewButtonItem  = UIBarButtonItem(image: listViewButtonImage, style: .plain, target: self, action: #selector(gridButtonTapped))
         
         navigationController?.navigationBar.tintColor           = .label
         navigationItem.setLeftBarButton(barButtonItem, animated: false)
-        navigationItem.setRightBarButtonItems([profileButtonItem, gridViewButtonItem], animated: false)
+        navigationItem.setRightBarButtonItems([profileButtonItem, listViewButtonItem], animated: false)
         definesPresentationContext                               = true
         navigationItem.hidesSearchBarWhenScrolling               = false
         
     }
     func configureCollectionView() {
-        collectionView           = UICollectionView(frame: .zero,
-                                                    collectionViewLayout: UICollectionViewFlowLayout())
-        
-        view.addSubview(collectionView!)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                              left: view.leftAnchor,
-                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                              right: view.rightAnchor,
-                              paddingTop: 10,
-                              paddingLeft: 0,
-                              paddingBottom: 10,
-                              paddingRight: 0)
-        collectionView.register(MyNoteCollectionViewCell.self,
-                                forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor  = .secondarySystemBackground
-        collectionView.frame            = view.bounds
+//        collectionView           = UICollectionView(frame: .zero,
+//                                                    collectionViewLayout: UICollectionViewFlowLayout())
+//        
+//        view.addSubview(collectionView!)
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                              left: view.leftAnchor,
+//                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+//                              right: view.rightAnchor,
+//                              paddingTop: 10,
+//                              paddingLeft: 0,
+//                              paddingBottom: 10,
+//                              paddingRight: 0)
+//        collectionView.register(MyNoteCollectionViewCell.self,
+//                                forCellWithReuseIdentifier: "cell")
+//        collectionView.backgroundColor  = .secondarySystemBackground
+//        collectionView.frame            = view.bounds
     }
     func configureSeachController() {
         searchController.loadViewIfNeeded()
@@ -138,7 +138,10 @@ class ContentViewController: UIViewController {
         let gridViewButtonItem  = UIBarButtonItem(image: gridViewButtonImage, style: .plain, target: self, action: #selector(gridButtonTapped))
         self.navigationItem.setRightBarButtonItems([profileButtonItem,gridViewButtonItem], animated: true)
         
-        collectionView?.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+
+        }
     }
 }
 extension ContentViewController: ProfileControllerDelegate {

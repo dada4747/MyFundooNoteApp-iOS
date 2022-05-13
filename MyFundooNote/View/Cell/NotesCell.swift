@@ -19,28 +19,49 @@ class MyNoteCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        contentView.layer.borderColor   = UIColor.secondaryLabel.cgColor
+        contentView.layer.borderWidth   = 1.0
+        contentView.layer.cornerRadius  = 6
         addSubview(titleLabel)
-        titleLabel.textAlignment = .center
-            titleLabel.numberOfLines = 0
-        titleLabel.textColor = .label
-        titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 23.0)
-        titleLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 5, paddingLeft: 0, paddingRight: 0)
-
         addSubview(descriptionLabel)
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+        titleLabel.textAlignment    = .center
+        titleLabel.numberOfLines    = 0
+        titleLabel.textColor        = .label
+        titleLabel.lineBreakMode    = .byWordWrapping
+        titleLabel.font             = UIFont.boldSystemFont(ofSize: 23.0)
+        
+        titleLabel.anchor(top: topAnchor,
+                          left: leftAnchor,
+                          right: rightAnchor,
+                          paddingTop: 5,
+                          paddingLeft: 5,
+                          paddingRight: 5
+        )
 
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .label
-        descriptionLabel.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0)
-        contentView.layer.borderWidth = 1.0
-        contentView.layer.cornerRadius = 6
-        layer.borderColor = UIColor.secondaryLabel.cgColor
+        descriptionLabel.textAlignment  = .center
+        descriptionLabel.font           = UIFont.boldSystemFont(ofSize: 17.0)
+        descriptionLabel.lineBreakMode  = .byWordWrapping
+        descriptionLabel.numberOfLines  = 0
+        descriptionLabel.textColor      = .label
+        
+        descriptionLabel.anchor(top: titleLabel.bottomAnchor,
+                                left: leftAnchor,
+                                bottom: bottomAnchor,
+                                right: rightAnchor,
+                                paddingTop: 5,
+                                paddingLeft: 5,
+                                paddingBottom: 5,
+                                paddingRight: 5
+        )
+    
 
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    
 }

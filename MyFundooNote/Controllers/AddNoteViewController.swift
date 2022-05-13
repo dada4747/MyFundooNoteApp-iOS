@@ -236,6 +236,8 @@ class AddNoteViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }else {
                 // MARK: - Todo
+                print(":::::::::::::::::::::::::::::::::::::")
+                print(error?.localizedDescription)
             }
         }
     }
@@ -251,13 +253,21 @@ class AddNoteViewController: UIViewController {
                 navigationController?.popViewController(animated: true)
             }
             
-        } else if (note?.id != nil ){
+        } else if (note?.id != nil && trashView == true ){
+            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: true, isNote: note!.isNote, isReminder: note!.isReminder) { error in
+                if error == nil {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            return 
+        }else if(note?.id != nil){
             FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: note!.isArchive, isNote: note!.isNote, isReminder: note!.isReminder) { error in
                 if error == nil {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-        } else if(title.isEmpty && desc.isEmpty) {
+        }
+        else if(title.isEmpty && desc.isEmpty) {
             navigationController?.popViewController(animated: true)
         }
         navigationController?.popViewController(animated: true)

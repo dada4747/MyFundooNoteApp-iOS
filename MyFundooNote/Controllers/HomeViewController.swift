@@ -30,75 +30,97 @@ class HomeViewController: ContentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotes()
+        
+        
+        collectionView           = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: UICollectionViewFlowLayout())
+        view.addSubview(collectionView!)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                              left: view.leftAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 10,
+                              paddingLeft: 0,
+                              paddingBottom: 10,
+                              paddingRight: 0)
+        collectionView.register(MyNoteCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor  = .secondarySystemBackground
+        collectionView.frame            = view.bounds
+        
         searchController.searchResultsUpdater   = self
         searchController.searchBar.delegate     = self
         collectionView.dataSource               = self
         collectionView.delegate                 = self
         collectionView.reloadData()
         configureAddNoteButton()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("back in home view ")
         fetchNotes()
-      
-
+        
+        
         collectionView.reloadData()
     }
     
-   
+    
     // MARK: - Configuration UI
     
     //MARK: - Methods
     func fetchNotes(){
-            FirebaseNotsService.shared.fetchNotes{ notes in
-                print(notes)
-                if notes.count < 10 {
-                    self.hasMoreNotes   = false
-                } else {
-                    self.hasMoreNotes   = true
-                }
-                self.notes              = notes
-                self.collectionView?.reloadData()
+        FirebaseNotsService.shared.fetchNotes{ notes in
+            if notes.count < 10 {
+                self.hasMoreNotes   = false
+            } else {
+                self.hasMoreNotes   = true
             }
+            self.notes              = notes
+            DispatchQueue.main.async { self.collectionView?.reloadData() }
+            
+            //                self.collectionView?.reloadData()
         }
-        
-        func fetchMoreNotes() {
-            FirebaseNotsService.shared.fetchMoreNotes { notes in
-                if notes.count < 10 {
-                    self.hasMoreNotes = false
-                } else {
-                    self.hasMoreNotes = true
-                }
-                self.notes.append(contentsOf: notes)
-                self.collectionView?.reloadData()
+    }
+    
+    func fetchMoreNotes() {
+        FirebaseNotsService.shared.fetchMoreNotes { notes in
+            if notes.count < 10 {
+                self.hasMoreNotes = false
+            } else {
+                self.hasMoreNotes = true
             }
+            self.notes.append(contentsOf: notes)
+            DispatchQueue.main.async { self.collectionView?.reloadData() }
+            
+            //                self.collectionView?.reloadData()
         }
+    }
     //    func fetchNotes(){
-//        FirebaseNotsService.shared.fetchNotes{ [weak self] notes in
-//            guard let self = self else { return }
-//            self.updateUI(with: notes)
-//        }
-//    }
-//
-//    func fetchMoreNotes() {
-//        FirebaseNotsService.shared.fetchMoreNotes {[weak self] notes in
-//            guard let self = self else { return }
-//            self.updateUI(with: notes)
-//        }
-//    }
-//
-//    func updateUI(with notes: [NoteModel]) {
-//        if notes.count < 10 {
-//            self.hasMoreNotes = false
-//        } else {
-//            self.hasMoreNotes = true
-//        }
-//        self.notes = notes
-////        self.notes.append(contentsOf: notes)
-//        DispatchQueue.main.async { self.collectionView?.reloadData() }
-//    }
+    //        FirebaseNotsService.shared.fetchNotes{ [weak self] notes in
+    //            guard let self = self else { return }
+    //            self.updateUI(with: notes)
+    //        }
+    //    }
+    //
+    //    func fetchMoreNotes() {
+    //        FirebaseNotsService.shared.fetchMoreNotes {[weak self] notes in
+    //            guard let self = self else { return }
+    //            self.updateUI(with: notes)
+    //        }
+    //    }
+    //
+    //    func updateUI(with notes: [NoteModel]) {
+    //        if notes.count < 10 {
+    //            self.hasMoreNotes = false
+    //        } else {
+    //            self.hasMoreNotes = true
+    //        }
+    //        self.notes = notes
+    ////        self.notes.append(contentsOf: notes)
+    //        DispatchQueue.main.async { self.collectionView?.reloadData() }
+    //    }
     
     func configureAddNoteButton() {
         view.addSubview(addNoteButton)
@@ -187,7 +209,9 @@ extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
             filteredNotes.removeAll()
             filteredNotes   = notes
         }
-        collectionView?.reloadData()    }
+        collectionView?.reloadData()
+        
+    }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false

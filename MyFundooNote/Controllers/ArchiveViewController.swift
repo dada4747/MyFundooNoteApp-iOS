@@ -6,73 +6,98 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class ArchiveViewController: ContentViewController {
     
     // MARK: - Variabels
-    var archiveNotes :[NoteModel]           = []
+    var archiveNotes :[NoteModel]?          = []
     var filteredNotes:[NoteModel]           = []
     
     // MARK: - Life Cycle Method
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: PinterestLayout())
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {             layout.delegate = self
+        }
+               
+                collectionView.register(MyNoteCollectionViewCell.self,
+                                        forCellWithReuseIdentifier: "cell")
+        view.addSubview(collectionView!)
+        collectionView.backgroundColor  = .secondarySystemBackground
+                       collectionView.translatesAutoresizingMaskIntoConstraints = false
+                       collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                             left: view.leftAnchor,
+                                             bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                                             right: view.rightAnchor,
+                                             paddingTop: 10,
+                                             paddingLeft: 0,
+                                             paddingBottom: 10,
+                                             paddingRight: 0)
         fetchArchiveNotes()
         view.backgroundColor = .secondarySystemBackground
-        collectionView?.reloadData()
         searchController.searchResultsUpdater   = self
         searchController.searchBar.delegate     = self
         searchController.searchBar.placeholder  = "Search Archives"
         collectionView.dataSource              = self
         collectionView.delegate                = self
-        collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchArchiveNotes()
-        collectionView.reloadData()
     }
+
     
     // MARK: - Configure ui
     
     // MARK: - Functions
     func fetchArchiveNotes() {
-        FirebaseNotsService.shared.fetchArchive { notes in
+        FirebaseNotsService.shared.fetchArchive { [weak self] notes in
+            guard let self = self else { return }
+
             if notes.count < 10 {
                 self.hasMoreNotes = false
             } else {
                 self.hasMoreNotes = true
             }
             self.archiveNotes       = notes
-            self.collectionView?.reloadData()
-        }
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+                
+            }
     }
     
     func fetchMoreArchiveNotes() {
-        FirebaseNotsService.shared.fetchMoreArchive { notes in
+        FirebaseNotsService.shared.fetchMoreArchive { [weak self] notes in
+                        guard let self = self else { return }
+
             if notes.count < 10 {
                 self.hasMoreNotes = false
             } else {
                 self.hasMoreNotes = true
             }
-            self.archiveNotes.append(contentsOf: notes)
-            self.collectionView?.reloadData()
+            self.archiveNotes?.append(contentsOf: notes)
+            print("paginatino call here")
+            DispatchQueue.main.async {
+                print("***********************************")
+                self.collectionView?.reloadData()
+            }
         }
     }
 }
 
 
 // MARK: - Data source and delegate
-extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
+extension ArchiveViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearching {
             return filteredNotes.count
         } else {
-            return archiveNotes.count
+            return archiveNotes!.count
         }
     }
     
@@ -82,7 +107,7 @@ extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDel
         if isSearching {
             thisNote     = filteredNotes[indexPath.row]
         } else {
-            thisNote     = archiveNotes[indexPath.row]
+            thisNote     = archiveNotes![indexPath.row]
         }
         cell.descriptionLabel.text = thisNote.desc
         cell.titleLabel.text = thisNote.title
@@ -90,33 +115,91 @@ extension ArchiveViewController: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     
+}
+extension ArchiveViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc          = AddNoteViewController()
-        let thisNote    = archiveNotes[indexPath.row]
+        let thisNote    = archiveNotes?[indexPath.row]
+        vc.trashView    = true
         vc.note         = thisNote
+//        print("this is did select of archives\(thisNote?.title)")
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         print(hasMoreNotes)
-        if( hasMoreNotes && indexPath.row == archiveNotes.count-1  ) {
+        if( hasMoreNotes && indexPath.row == archiveNotes!.count-1  ) {
+            print("Load more notes")
             fetchMoreArchiveNotes()
         } else {
             isLoading = true
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if self.isLoading {
             return CGSize.zero
         } else {
-            
             return CGSize(width: collectionView.bounds.size.width, height: 60)
         }
-        
-        
     }
 }
+extension ArchiveViewController: PinterestLayoutDelegate {
+   
+    func collectionView(collectionView: UICollectionView, heightForTitleAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
+        if let note = archiveNotes?[indexPath.item] {
+            let topPadding = CGFloat(5)
+            let bottomPadding = CGFloat(5)
+            let titleFont = UIFont.systemFont(ofSize: 23)
+            let titleHeight = self.heightOfText(for: note.title, with: titleFont, width: width - 10 )
+            let height = topPadding + titleHeight + topPadding + bottomPadding
+//            print("height of title label of note cell\(height)")
+            return height
+        }
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, heightForDescriptionAt indexPath: IndexPath, with width: CGFloat) -> CGFloat {
+        if let note = archiveNotes?[indexPath.item] {
+            let topPadding = CGFloat(5)
+            let bottomPadding = CGFloat(5)
+            let descFont = UIFont.systemFont(ofSize: 17)
+            let descHeight = self.heightOfText(for: note.desc, with: descFont, width: width - 10)
+            let height = topPadding + descHeight + topPadding + bottomPadding
+//            print("height of desc label of note cell\(height)")
+
+            return height
+        }
+        return 0.0
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfColumn number: CGFloat) -> CGFloat {
+        if isListView {
+
+            return 1
+        } else {
+
+            return 2
+        }
+    }
+    
+    func heightOfText(for text: String, with font: UIFont, width: CGFloat) -> CGFloat {
+        print("this is height of text ")
+        let nsstring = NSString(string: text)
+        let maxHeight = CGFloat(1503)
+        let textAtributes = [NSAttributedString.Key.font : font]
+        let boundingRect = nsstring.boundingRect(with: CGSize(width: width, height: maxHeight),options: .usesLineFragmentOrigin,attributes: textAtributes, context: nil)
+        return ceil(boundingRect.height)
+    }
+}
+
+
+
+
+
+
+
 
 // MARK: - Extension ResultUpdating and Search bar delegate
 extension ArchiveViewController: UISearchResultsUpdating, UISearchBarDelegate {
@@ -125,7 +208,7 @@ extension ArchiveViewController: UISearchResultsUpdating, UISearchBarDelegate {
         if !searchText.isEmpty {
             isSearching     = true
             filteredNotes.removeAll()
-            for item in archiveNotes {
+            for item in archiveNotes! {
                 if item.title.lowercased().contains(searchText.lowercased()) == true ||
                     item.desc.lowercased().contains(searchText.lowercased()) == true {
                     filteredNotes.append(item)
@@ -135,7 +218,7 @@ extension ArchiveViewController: UISearchResultsUpdating, UISearchBarDelegate {
         else {
             isSearching     = false
             filteredNotes.removeAll()
-            filteredNotes   = archiveNotes
+            filteredNotes   = archiveNotes!
         }
         collectionView?.reloadData()    }
     
@@ -146,33 +229,3 @@ extension ArchiveViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
 }
 
-// MARK: - collectionviewdelegateflowlayout
-extension ArchiveViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = collectionView.bounds
-        let size = CGSize(width: bounds.width, height: 1000)
-        let note = archiveNotes[indexPath.row]
-        let titleFont = [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 23)]
-        let descFont  = [NSAttributedString.Key.font:  UIFont.systemFont(ofSize: 17)]
-        
-        let estimatedFrameDesc = NSString(string: note.desc).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: descFont, context: nil)
-        let estimatedFrameTitle = NSString(string: note.title).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: titleFont, context: nil)
-        if !isListView {
-            return CGSize(width: bounds.width/2 - 10   , height:  estimatedFrameTitle.height + estimatedFrameDesc.height + 20  )
-        } else {
-            return CGSize(width: bounds.width - 10 , height: estimatedFrameTitle.height + estimatedFrameDesc.height + 20)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-}

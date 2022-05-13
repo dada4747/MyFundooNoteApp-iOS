@@ -15,6 +15,22 @@ class RemindersViewController: ContentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchNotes()
+        collectionView           = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: UICollectionViewFlowLayout())
+        view.addSubview(collectionView!)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                              left: view.leftAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 10,
+                              paddingLeft: 0,
+                              paddingBottom: 10,
+                              paddingRight: 0)
+        collectionView.register(MyNoteCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor  = .secondarySystemBackground
+        collectionView.frame            = view.bounds
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         collectionView?.dataSource       = self

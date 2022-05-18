@@ -15,20 +15,20 @@ final class ContainerViewComposer {
         let remindersViewController = RemindersViewController()
         let archiveViewController = ArchiveViewController()
         let sideMenuItems = [
-            SideMenuItem(icon: UIImage(systemName: "house.fill"),
-                         name: "Home",
+            SideMenuItem(icon: ConstantImages.house,
+                         name: ConstantTitles.homepage,
                          viewController: .embed(homeViewController)),
-            SideMenuItem(icon: UIImage(systemName: "person"),
-                         name: "Reminders",
+            SideMenuItem(icon: ConstantImages.reminder,
+                         name: ConstantTitles.reminder,
                          viewController: .embed(remindersViewController)),
-            SideMenuItem(icon: UIImage(systemName: "trash.fill"),
-                         name: "Archive",
+            SideMenuItem(icon: ConstantImages.archive,
+                         name: ConstantTitles.archive,
                          viewController: .embed(archiveViewController)),
-            SideMenuItem(icon: UIImage(systemName: "gear"),
-                         name: "Settings",
+            SideMenuItem(icon:ConstantImages.setting,
+                         name: ConstantTitles.setting,
                          viewController: .push(settingsViewController)),
-            SideMenuItem(icon: UIImage(systemName: "info.circle"),
-                         name: "About",
+            SideMenuItem(icon: ConstantImages.about,
+                         name: ConstantTitles.about,
                          viewController: .modal(aboutViewController)),
         ]
         let sideMenuViewController = SideMenuViewController(sideMenuItems: sideMenuItems)

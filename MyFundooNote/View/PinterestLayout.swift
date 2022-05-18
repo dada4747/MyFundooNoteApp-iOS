@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PinterestLayoutDelegate: class {
+protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(collectionView: UICollectionView, heightForTitleAt indexPath: IndexPath, with width: CGFloat) -> CGFloat
     
     func collectionView(collectionView: UICollectionView, heightForDescriptionAt indexPath: IndexPath, with width: CGFloat) -> CGFloat
@@ -29,15 +29,9 @@ class PinterestLayout: UICollectionViewLayout {
     private var attributesCache = [PinterestLayoutAttributes]()
     
     override func prepare() {
-        print("in class of pinterst layout the voweiojdf soijdf ")
-       
-//        guard let collectionView = collectionView else {
-//                    return
-//                }
+        
         attributesCache.removeAll()
         numberOfColumns = (delegate?.collectionView(collectionView: collectionView!, numberOfColumn: numberOfColumns))!
-
-        print(numberOfColumns)
         guard attributesCache.isEmpty == true || attributesCache.isEmpty == false, let collectionView = collectionView else {
                 return
             }

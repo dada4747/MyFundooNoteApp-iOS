@@ -16,7 +16,7 @@ class RegistrationViewController: UIViewController {
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "pro") , for: .normal)
+        button.setImage(#imageLiteral(resourceName: ConstatResourceName.profile) , for: .normal)
         button.tintColor = .label
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
@@ -24,33 +24,33 @@ class RegistrationViewController: UIViewController {
     }()
         
     private lazy var emailContainerView: UIView      = {
-        return InputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextField)
+        return InputContainerView(image: #imageLiteral(resourceName: ConstatResourceName.mail), textField: emailTextField)
     }()
     
     private lazy var fullNameContainerView: UIView   = {
-        return InputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: fullNameTextField)
+        return InputContainerView(image: #imageLiteral(resourceName: ConstatResourceName.person), textField: fullNameTextField)
     }()
     
     private lazy var userNameContainerView: UIView   = {
-        return InputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: userNameTextField)
+        return InputContainerView(image: #imageLiteral(resourceName: ConstatResourceName.person), textField: userNameTextField)
     }()
     
     private lazy var passwordContainerView: InputContainerView = {
-        return InputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passTextField)
+        return InputContainerView(image: #imageLiteral(resourceName: ConstatResourceName.lock), textField: passTextField)
     }()
     
-    private let emailTextField      = CustomTextField(placeholder: "Email")
-    private let fullNameTextField   = CustomTextField(placeholder: "Full Name")
-    private let userNameTextField   = CustomTextField(placeholder: "User Name")
+    private let emailTextField      = CustomTextField(placeholder: ConstantPlaceholders.email)
+    private let fullNameTextField   = CustomTextField(placeholder: ConstantPlaceholders.fullname)
+    private let userNameTextField   = CustomTextField(placeholder: ConstantPlaceholders.username)
     
     private let passTextField: CustomTextField = {
-        let tf = CustomTextField(placeholder: "Password")
+        let tf = CustomTextField(placeholder: ConstantPlaceholders.password)
         tf.isSecureTextEntry = true
         return tf
     }()
-    let signUpButton = CustomButton(backgroundColor: #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), title: "Sign Up")
+    let signUpButton = CustomButton(backgroundColor: #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), title: ConstantTitles.signup)
 
-    private let alreadyHaveAccButton = TextButton(firstTitle: "Already have an account? ", secondTitle: "Log In")
+    private let alreadyHaveAccButton = TextButton(firstTitle: "Already have an account? ", secondTitle: ConstantTitles.login)
    
     // MARK: - LifeCycle
     
@@ -140,7 +140,7 @@ class RegistrationViewController: UIViewController {
     func configureSignUpButton() {
         signUpButton.layer.cornerRadius = 6
         signUpButton.setTitleColor(.white, for: .normal)
-        signUpButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        signUpButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: ConstantFontSize.descriptionFontsize)
         signUpButton.setHeight(height: 50)
         signUpButton.isEnabled = false
         signUpButton.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)

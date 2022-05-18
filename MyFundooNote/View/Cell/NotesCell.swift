@@ -12,7 +12,7 @@ protocol DataCollectionProtocol {
     func deleteData(index : Int)
 }
 class MyNoteCollectionViewCell: UICollectionViewCell {
-//    var index : IndexPath?
+    static let reuseID  = "MyNoteCollectionViewCell"
     var delegate : DataCollectionProtocol?
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
@@ -29,7 +29,7 @@ class MyNoteCollectionViewCell: UICollectionViewCell {
         titleLabel.numberOfLines    = 0
         titleLabel.textColor        = .label
         titleLabel.lineBreakMode    = .byWordWrapping
-        titleLabel.font             = UIFont.boldSystemFont(ofSize: 23.0)
+        titleLabel.font             = UIFont.boldSystemFont(ofSize: ConstantFontSize.titleFontSize)
         
         titleLabel.anchor(top: topAnchor,
                           left: leftAnchor,
@@ -40,7 +40,7 @@ class MyNoteCollectionViewCell: UICollectionViewCell {
         )
 
         descriptionLabel.textAlignment  = .center
-        descriptionLabel.font           = UIFont.boldSystemFont(ofSize: 17.0)
+        descriptionLabel.font           = UIFont.systemFont(ofSize: ConstantFontSize.descriptionFontsize)// .boldSystemFont(ofSize: 17.0)
         descriptionLabel.lineBreakMode  = .byWordWrapping
         descriptionLabel.numberOfLines  = 0
         descriptionLabel.textColor      = .label

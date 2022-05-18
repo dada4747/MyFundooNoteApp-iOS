@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ReminderControllerDelegate : class {
+protocol ReminderControllerDelegate : AnyObject {
     func handleRemider(date: Date )
 }
 
@@ -15,8 +15,8 @@ class AddReminderViewController: UIViewController {
     weak var delegate   : ReminderControllerDelegate?
     let label           = TitleLabel(textAlignment: .center, fontSize: 23)
     let containerView   = CustomContainerView()
-    let saveButton      = CustomButton(backgroundColor: .systemBlue, title: "Save")
-    let cancleButton    = CustomButton(backgroundColor: .systemPink, title: "Cancle")
+    let saveButton      = CustomButton(backgroundColor: .systemBlue, title: ConstantTitles.save)
+    let cancleButton    = CustomButton(backgroundColor: .systemPink, title: ConstantTitles.cancle)
     
     let datePicker: UIDatePicker = {
             let df = UIDatePicker()
@@ -45,7 +45,7 @@ class AddReminderViewController: UIViewController {
     
     func  configureTitleLabel() {
         containerView.addSubview(label)
-        label.text = "Add Reminder"
+        label.text = ConstantHeader.addreminder
         label.centerX(inView: containerView)
         label.anchor(top: containerView.topAnchor,
                      paddingTop: 40,

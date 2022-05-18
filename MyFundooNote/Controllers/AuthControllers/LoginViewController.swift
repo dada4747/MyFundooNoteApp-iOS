@@ -21,26 +21,26 @@ class LoginViewController: UIViewController {
        
        private let iconImage: UIImageView = {
            let iv = UIImageView()
-           iv.image = UIImage(named: "note.text.png")
+           iv.image = ConstantImages.noteImage
            return iv
        }()
        
        private lazy var emailContainerView: UIView = {
-           return InputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"),
+           return InputContainerView(image: #imageLiteral(resourceName: ConstatResourceName.mail ),
                                      textField: emailTextField)
        }()
        
        private lazy var passwordContainerView: InputContainerView = {
-           return InputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"),
+           return InputContainerView(image: #imageLiteral(resourceName:ConstatResourceName.lock ),
                                      textField: passTextField)
        }()
-      let loginButton = CustomButton(backgroundColor: #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), title: "Log In")
+    let loginButton = CustomButton(backgroundColor: #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), title: ConstantTitles.login)
 
-       let dontHaveAccButton = TextButton(firstTitle: "Don't have an account? ", secondTitle: "Sign UP")
-       private let emailTextField = CustomTextField(placeholder: "Email")
+    let dontHaveAccButton = TextButton(firstTitle: "Don't have an account? ", secondTitle: ConstantTitles.signup)
+    private let emailTextField = CustomTextField(placeholder: ConstantPlaceholders.email)
        
        private let passTextField: CustomTextField = {
-           let tf = CustomTextField(placeholder: "Password")
+           let tf = CustomTextField(placeholder: ConstantPlaceholders.password)
            tf.isSecureTextEntry = true
            return tf
        }()
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
     func configureLogInButton() {
         loginButton.layer.cornerRadius = 6
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: ConstantFontSize.descriptionFontsize)
         loginButton.setHeight(height: 50)
         loginButton.isEnabled = false
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)

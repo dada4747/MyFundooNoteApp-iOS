@@ -10,71 +10,40 @@ import UserNotifications
 import CloudKit
 
 class AddNoteViewController: UIViewController {
-    
-    
+        
     // MARK: - Variables
     var note            : NoteModel?
     var trashView       : Bool?
-    let pine            : UIImage?    = UIImage(systemName: "pin.circle")
-    let reminder        : UIImage?    = UIImage(systemName: "bell.circle")
-    let archive         : UIImage?    = UIImage(systemName: "archivebox.circle")
-    let delete          : UIImage?    = UIImage(systemName: "trash.circle")
-    let backImage       : UIImage?    = UIImage(systemName: "arrow.backward.circle")
-    let unarchiveImage  : UIImage?    = UIImage(systemName: "archivebox.circle.fill")
-    
-    let titleLabel                    = TitleLabel(textAlignment: .left, fontSize: 23)
-    let descLabel                     = BodyLabel(textAlignment: .left)
-    let titleTextView                 = CustomTextView(placeholder: "Title", fontSize: 23)
-    let descriptionTextView           = CustomTextView(placeholder: "Description", fontSize: 17)
-    
+
+    let titleLabel              = TitleLabel(textAlignment: .left,
+                                             fontSize: ConstantFontSize.titleFontSize)
+    let descLabel               = BodyLabel(textAlignment: .left)
+    let titleTextView           = CustomTextView(placeholder: ConstantPlaceholders.title,
+                                                 fontSize: ConstantFontSize.titleFontSize)
+    let descriptionTextView     = CustomTextView(placeholder: ConstantPlaceholders.disc,
+                                                 fontSize: ConstantFontSize.descriptionFontsize)
     var keyboardHeight: CGFloat = 0.0
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleTextView.text          = note?.title
-        descriptionTextView.text    = note?.desc
+        setup()
         if(!titleTextView.text.isEmpty) {
             titleLabel.isHidden     = true
             descLabel.isHidden      = true
         }
         configureView()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil
         )
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         hideKeyboardWhenTappedAround()
     }
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.keyboardHeight = keyboardRectangle.height
-            descriptionBottomConstraints.isActive = false
-            descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -(keyboardHeight + 10))
-             descriptionBottomConstraints.isActive = true
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        descriptionBottomConstraints.isActive = false
-        descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -20)
-         descriptionBottomConstraints.isActive = true
-    }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+
     // MARK: - ConfugureUI
-    
     func configureView() {
         view.backgroundColor = .secondarySystemBackground
         configureNavigationBar()
@@ -85,27 +54,27 @@ class AddNoteViewController: UIViewController {
     }
     
     func configureNavigationBar(){
-        let pineButtonItem      = UIBarButtonItem(image: pine,
+        let pineButtonItem      = UIBarButtonItem(image: ConstantImages.pine,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(pineTapped))
-        let reminderButtonItem  = UIBarButtonItem(image: reminder,
+        let reminderButtonItem  = UIBarButtonItem(image: ConstantImages.reminder,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(reminderTapped))
-        let archiveButtonItem   = UIBarButtonItem(image: archive,
+        let archiveButtonItem   = UIBarButtonItem(image: ConstantImages.archive,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(handleArchiveTapped))
-        let deleteButtonItem    = UIBarButtonItem(image: delete,
+        let deleteButtonItem    = UIBarButtonItem(image: ConstantImages.delete,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(handleDeleteTapped))
-        let unArchiveButtonItem = UIBarButtonItem(image: unarchiveImage,
+        let unArchiveButtonItem = UIBarButtonItem(image: ConstantImages.unarchiveImage,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(handleUnArchiveTapped))
-        let backButtonItem      = UIBarButtonItem(image: backImage,
+        let backButtonItem      = UIBarButtonItem(image: ConstantImages.backImage,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(handleBackButton))
@@ -147,43 +116,91 @@ class AddNoteViewController: UIViewController {
     
     func configureTitleLabel() {
         titleTextView.addSubview(titleLabel)
-        titleLabel.text = "Title"
-        titleLabel.textColor = .secondaryLabel
+        titleLabel.text                                      = ConstantPlaceholders.title
+        titleLabel.textColor                                 = .secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerY(inView: titleTextView)
-        titleLabel.anchor(left: titleTextView.leftAnchor, right: titleTextView.rightAnchor, paddingLeft: 10, paddingRight: 10, height: 40)
+        titleLabel.anchor(left: titleTextView.leftAnchor,
+                          right: titleTextView.rightAnchor,
+                          paddingLeft: 10,
+                          paddingRight: 10,
+                          height: 40)
     }
     var descriptionBottomConstraints: NSLayoutConstraint!
     
     func configureDescriptionTextView(){
         view.addSubview(descriptionTextView)
-        descriptionTextView.delegate = self
-        descriptionTextView.isScrollEnabled = false
+        descriptionTextView.delegate                                  = self
+        descriptionTextView.isScrollEnabled                           = false
         descriptionTextView.sizeToFit()
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-//        descriptionTextView.anchor(top: titleTextView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 20, paddingBottom:  20, paddingRight: 20)
-//        descriptionTextView.anchor(top: titleTextView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
         NSLayoutConstraint.activate([
-            descriptionTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 10),
-            descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-        
+            descriptionTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor,
+                                                     constant: 10),
+            descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor,
+                                                      constant: 20),
+            descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor,
+                                                       constant: -20),
         ])
-       descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+       descriptionBottomConstraints = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                                                  constant: -20)
         descriptionBottomConstraints.isActive = true
-        
     }
     
     func configureDescriptionLabel() {
         descriptionTextView.addSubview(descLabel)
-        descLabel.text = "Description"
-        descLabel.textColor = .secondaryLabel
+        descLabel.text                                      = ConstantPlaceholders.disc
+        descLabel.textColor                                 = .secondaryLabel
         descLabel.translatesAutoresizingMaskIntoConstraints = false
-        descLabel.anchor(top:descriptionTextView.topAnchor, left: descriptionTextView.leftAnchor,right: descriptionTextView.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingRight: 10, height: 40)
+        descLabel.anchor(top:descriptionTextView.topAnchor,
+                         left: descriptionTextView.leftAnchor,
+                         right: descriptionTextView.rightAnchor,
+                         paddingTop: 5,
+                         paddingLeft: 10,
+                         paddingRight: 10,
+                         height: 40)
     }
     
     // MARK: - Functions
-    
+    func setup(){
+        if note != nil {
+            titleTextView.text          = note?.title
+            descriptionTextView.text    = note?.discription
+        } else {
+            FirebaseNotsService.shared.createEmptyNote { note in
+                self.note = note
+            }
+        }
+    }
+    func saveIfNoteIsNotEmpty() {
+        guard let note = note else { return }
+        if !note.title.isEmpty && !note.discription.isEmpty {
+            FirebaseNotsService.shared.updateNoteToFirebase(note: note) { err in
+                if err != nil {
+                    return
+                }else {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+    }
+    func deleteNoteIfIsEmpty() {
+        guard let note = note else { return }
+        if note.title.isEmpty || note.discription.isEmpty {
+            FirebaseNotsService.shared.deleteDataToFirebase(noteId: note.id) { error in
+                if error != nil {
+                    return
+                }else {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+    }
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     // MARK: - Handlers
     @objc func pineTapped(){
         
@@ -200,77 +217,53 @@ class AddNoteViewController: UIViewController {
     }
     
     @objc func handleUnArchiveTapped(){
-        if(note?.id != nil) {
-            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: false, isNote: note!.isNote, isReminder: note!.isReminder) { error in
-                if error == nil {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-        }
+        handleBackButton()
     }
     @objc func handleArchiveTapped(){
-        let title   = titleTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let desc    = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !title.isEmpty || !desc.isEmpty {
-            print("in archive tapp not empty")
-            if(note?.id != nil) {
-                FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: true, isNote: note!.isNote, isReminder: note!.isReminder) { error in
-                    if error == nil {
-                        self.navigationController?.popViewController(animated: true)
-                        
-                    } else {
-                        print("error found")
-                    }
-                }
-                return
-            } else {
-                FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: false, isArchieved: true, isNote: false)
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+        guard let note       = note else { return }
+        self.note?.isArchive = !note.isArchive
+        handleBackButton()
     }
     
     @objc func handleDeleteTapped() {
-        FirebaseNotsService.shared.deleteDataToFirebase(noteId: note!.id) { error in
-            if error == nil {
-                self.navigationController?.popViewController(animated: true)
-            }else {
+        LoaderAnimator.sharedInstance.show()
+        FirebaseNotsService.shared.deleteDataToFirebase(noteId: note!.id) { err in
+            if err != nil {
                 // MARK: - Todo
-                print(":::::::::::::::::::::::::::::::::::::")
-                print(error?.localizedDescription)
+                self.presentGFAlertOnMainThread(title: "Delete Note", message: "unable to delete the note", buttonTitle: "Ok")
+                return
+            }else {
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
     
+    
     @objc func handleBackButton() {
-        print("initial back tapped")
-        let title = titleTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let desc = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if(trashView == nil && note?.id == nil) {
-            
-            if !title.isEmpty || !desc.isEmpty {
-                FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: false, isArchieved: false, isNote: true)
-                navigationController?.popViewController(animated: true)
-            }
-            
-        } else if (note?.id != nil && trashView == true ){
-            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: true, isNote: note!.isNote, isReminder: note!.isReminder) { error in
-                if error == nil {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-            return 
-        }else if(note?.id != nil){
-            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: note!.isArchive, isNote: note!.isNote, isReminder: note!.isReminder) { error in
-                if error == nil {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
+        saveIfNoteIsNotEmpty()
+        deleteNoteIfIsEmpty()
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue             = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle                 = keyboardFrame.cgRectValue
+            self.keyboardHeight                   = keyboardRectangle.height
+            descriptionBottomConstraints.isActive = false
+            descriptionBottomConstraints          = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                                                                constant:  -(keyboardHeight + 10))
+             descriptionBottomConstraints.isActive = true
         }
-        else if(title.isEmpty && desc.isEmpty) {
-            navigationController?.popViewController(animated: true)
-        }
-        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        descriptionBottomConstraints.isActive = false
+        descriptionBottomConstraints          = descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                                                            constant:  -20)
+         descriptionBottomConstraints.isActive = true
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -279,6 +272,7 @@ extension AddNoteViewController: UITextViewDelegate {
         let size = CGSize(width: textView.frame.width, height: textView.frame.height)
         let estimateSize  = textView.sizeThatFits(size)
         if(textView == descriptionTextView ) {
+            note?.discription = textView.text
             if textView.contentSize.height >= 250 {
                 textView.isScrollEnabled = true
             } else {
@@ -291,6 +285,8 @@ extension AddNoteViewController: UITextViewDelegate {
                 }
             }
         } else if(textView == titleTextView){
+            
+            note?.title = textView.text
             
             if textView.contentSize.height >= 100 {
                 textView.isScrollEnabled = true
@@ -330,18 +326,29 @@ extension AddNoteViewController: UITextViewDelegate {
 
 extension AddNoteViewController: ReminderControllerDelegate {
     func setReminder(title: String, body:String, targetDate: Date) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.sound = .default
-        content.body = body
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        let content     = UNMutableNotificationContent()
+        content.title   = title
+        content.sound   = .default
+        content.body    = body
+        let center      = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert,
+                                              .sound,
+                                              .badge]) { granted, error in
             if error != nil {
             }
         }
         let targetDate1 = targetDate
-        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: targetDate1), repeats: false)
-        let request  = UNNotificationRequest(identifier: "The note Reminder", content: content, trigger: trigger)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year,
+                                                                                                   .month,
+                                                                                                   .day,
+                                                                                                   .hour,
+                                                                                                   .minute,
+                                                                                                   .second],
+                                                                                                  from: targetDate1),
+                                                    repeats: false)
+        let request  = UNNotificationRequest(identifier: "The note Reminder",
+                                             content: content,
+                                             trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { err in
             if err != nil{
@@ -351,31 +358,16 @@ extension AddNoteViewController: ReminderControllerDelegate {
     }
     
     func handleRemider(date: Date) {
-        let title = titleTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let desc = descriptionTextView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if(trashView == nil && note?.id == nil) {
-            if !title.isEmpty || !desc.isEmpty {
-                FirebaseNotsService.shared.writeToFirebase(title: titleTextView.text, description: descriptionTextView.text, isRemainder: true, isArchieved: false, isNote: true)
-                
-                DispatchQueue.main.async{
-                    self.setReminder(title: title, body: desc, targetDate: date)
-                    
-                }
-                navigationController?.popViewController(animated: true)
-            }
+        
+        note?.isReminder = true
+        guard let note = note else { return }
+
+        DispatchQueue.main.async {
+            self.setReminder(title: note.title,
+                             body: note.discription,
+                             targetDate: date)
             
-        } else if (note?.id != nil ){
-            FirebaseNotsService.shared.updateDataToFirebase(note: note!.id, title: titleTextView.text, desc: descriptionTextView.text, isArchive: false, isNote: note!.isNote, isReminder: true) { error in
-                if error == nil {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                DispatchQueue.main.async{
-                    self.setReminder(title: title, body: desc, targetDate: date)
-                }
-            }
-        } else if(title.isEmpty && desc.isEmpty) {
-            navigationController?.popViewController(animated: true)
         }
-        navigationController?.popViewController(animated: true)
+        handleBackButton()
     }
 }

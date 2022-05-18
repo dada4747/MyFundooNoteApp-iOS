@@ -10,20 +10,19 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class FirebaseNotsService {
-    var model       =   [NoteModel]()
-    let db          =   Firestore.firestore()
-    var documents   =   [QueryDocumentSnapshot]()
-    var lastSnapshot:   QueryDocumentSnapshot?
-    static var shared = FirebaseNotsService()
+    var model           = [NoteModel]()
+    let db              = Firestore.firestore()
+    var documents       = [QueryDocumentSnapshot]()
+    var lastSnapshot    : QueryDocumentSnapshot?
+    static var shared   = FirebaseNotsService()
     private init(){}
-    //  write Data into firebase database
-    func writeToFirebase(title: String,description: String,isRemainder: Bool,isArchieved:Bool, isNote:Bool) {
-        let data:[String: Any] = ["title": title , "Description": description,"created":Timestamp.init(date: Date()),"isRemainder":isRemainder,"isArchieved":isArchieved, "isNote": isNote]
-        guard let uid = Auth.auth().currentUser?.uid else { return print("Error in saving user id") }
-        Firestore.firestore().collection("Notes").document(uid).collection("note").addDocument(data: data)
-    }
     
-    // Fetch first few Notes from firebase//.whereField("isNote", isEqualTo: true)
+//    func writeToFirebase(title: String,description: String,isRemainder: Bool,isArchieved:Bool, isNote:Bool) {
+//        let data:[String: Any] = ["title": title , "Description": description,"created":Timestamp.init(date: Date()),"isRemainder":isRemainder,"isArchieved":isArchieved, "isNote": isNote]
+//        guard let uid = Auth.auth().currentUser?.uid else { return print("Error in saving user id") }
+//        Firestore.firestore().collection("Notes").document(uid).collection("note").addDocument(data: data)
+//    }
+    
     func fetchNotes(complition: @escaping([NoteModel])-> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let query = db.collection("Notes").document(uid).collection("note").whereField("isArchieved", isEqualTo: false).order(by: "created", descending: true).limit(to: 10)
@@ -71,6 +70,7 @@ class FirebaseNotsService {
         var notes = [NoteModel]()
         query.getDocuments { QuerySnapshot,Error in
             if Error != nil{
+                
                 print("Error in fetching data")
             }
             else {
@@ -89,31 +89,30 @@ class FirebaseNotsService {
     }
     
     //update notes to firebase database
-    public func updateDataToFirebase(note: String , title: String, desc: String, isArchive:Bool, isNote:Bool, isReminder:Bool, completed: @escaping (Error?) -> Void ) {
-        print("In update method ")
-        print(title)
-        print(note)
-        let data:[String: Any] = ["title": title , "Description": desc, "isArchieved": isArchive, "isNote":isNote, "isRemainder": isReminder]
-        guard let uid  = Auth.auth().currentUser?.uid else {
-            print("User is not vallid user")
-            return
-        }
-        Firestore.firestore().collection("Notes").document(uid).collection("note").document(note).updateData(data) { error in
-            //            if let error = error{
-            print("Update Failed.......")
-            completed(error)
-            //            }
-        }
-    }
+//    public func updateDataToFirebase(note: String , title: String, desc: String, isArchive:Bool, isNote:Bool, isReminder:Bool, completed: @escaping (Error?) -> Void ) {
+//        print("In update method ")
+//        print(title)
+//        print(note)
+//        let data:[String: Any] = ["title": title , "Description": desc, "isArchieved": isArchive, "isNote":isNote, "isRemainder": isReminder]
+//        guard let uid  = Auth.auth().currentUser?.uid else {
+//            print("User is not vallid user")
+//            return
+//        }
+//        Firestore.firestore().collection("Notes").document(uid).collection("note").document(note).updateData(data) { error in
+//            //            if let error = error{
+//            print("Update Failed.......")
+//            completed(error)
+//            //            }
+//        }
+//    }
     
     //deleting data from firebase
     func deleteDataToFirebase(noteId: String, completed: @escaping (Error?) -> Void){
-        
         guard let uid =  Auth.auth().currentUser?.uid else{
             return
         }
         Firestore.firestore().collection("Notes").document(uid).collection("note").document(noteId).delete { error in
-            completed(error)
+        completed(error)
         }
     }
     
@@ -124,5 +123,19 @@ class FirebaseNotsService {
             compilation(user)
         }
     }
+    func createEmptyNote(completion: (NoteModel) -> Void) {
+//        var note = NoteModel()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+    let doc = Firestore.firestore().collection("Notes").document(uid).collection("note").document()
+        
+        completion(NoteModel(id: doc.documentID))
+    }
     
+    func updateNoteToFirebase(note: NoteModel, completion: @escaping (Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let doc = Firestore.firestore().collection("Notes").document(uid).collection("note").document(note.id)
+        doc.setData(note.toDictionary(), merge: true) { error in
+            completion(error)
+        }
+    }
 }

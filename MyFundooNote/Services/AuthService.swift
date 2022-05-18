@@ -45,6 +45,7 @@ struct AuthService {
                                 "uid": uid,
                                 "username": credentials.username ] as [String: Any ]
                     Firestore.firestore().collection("users").document(uid).setData(data, completion: completion)
+                    
                 }
             }
         }

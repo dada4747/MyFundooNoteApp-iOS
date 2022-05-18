@@ -8,21 +8,25 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    let label       = TitleLabel(textAlignment: .left, fontSize: 17)
-    let body        = TitleLabel(textAlignment: .left, fontSize: 17)
+    let label       = TitleLabel(textAlignment: .left,
+                                 fontSize: ConstantFontSize.descriptionFontsize)
+    let body        = TitleLabel(textAlignment: .left,
+                                 fontSize: ConstantFontSize.descriptionFontsize)
     let container   = CustomContainerView()
-    
+    let defaults    = UserDefaults.standard
+
     let switchMode: UISwitch = {
         let switchmode = UISwitch()
-        switchmode.setOn(true, animated: false)
         return switchmode
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchMode.setOn(defaults.bool(forKey: "darkModeEnabled"),
+                         animated: false)
         configureUI()
         view.backgroundColor                    = .secondarySystemBackground
-        title                                   = "Setting"
+        title                                   = ConstantTitles.setting
         navigationController?.isToolbarHidden   = true
         navigationController?.navigationBar.topItem?.searchController?.searchBar.isHidden = true
                
@@ -35,8 +39,8 @@ class SettingsViewController: UIViewController {
     }
     func configureAppearanceLabel() {
         view.addSubview(label)
-        label.text = "APPEARANCE"
-        label.textColor = .secondaryLabel
+        label.text       = "APPEARANCE"
+        label.textColor  = .secondaryLabel
         label.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                      left: view.leftAnchor,
                      right: view.rightAnchor,
@@ -59,8 +63,8 @@ class SettingsViewController: UIViewController {
     }
     func configureAppearance() {
         container.addSubview(body)
-        body.text = "Dark Appearance"
-        body.textColor = .label
+        body.text       = "Dark Appearance"
+        body.textColor  = .label
         body.centerY(inView: container)
         body.anchor(left: container.leftAnchor,
                     paddingLeft: 10)
@@ -75,13 +79,14 @@ class SettingsViewController: UIViewController {
         switchMode.anchor( right: container.rightAnchor,
                            paddingRight: 20)
     }
-    
+
     @objc func switchStateDidChange(_ sender:UISwitch){
         if (sender.isOn == true){
+            defaults.set(true, forKey: "darkModeEnabled")
             let window = UIApplication.shared.keyWindow
                     window?.overrideUserInterfaceStyle = .dark
-        }
-        else{
+        }  else{
+            defaults.set(false, forKey: "darkModeEnabled")
             let window = UIApplication.shared.keyWindow
                     window?.overrideUserInterfaceStyle = .light
         }

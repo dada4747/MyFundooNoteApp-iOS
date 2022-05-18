@@ -14,11 +14,11 @@ class CustomTextField: UITextField {
             
             super.init(frame: .zero)
             
-            borderStyle = .none
-            font = UIFont.systemFont(ofSize: 16)
-            textColor = .label
-            keyboardAppearance = .dark
-            attributedPlaceholder = NSAttributedString(string: placeholder,
+            borderStyle             = .none
+            font                    = UIFont.systemFont(ofSize: 16)
+            textColor               = .label
+            keyboardAppearance      = .dark
+            attributedPlaceholder   = NSAttributedString(string: placeholder,
                                                        attributes: [.foregroundColor : UIColor.label])
         }
         

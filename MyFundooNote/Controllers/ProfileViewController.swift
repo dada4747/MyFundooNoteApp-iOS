@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import SDWebImage
 
-protocol ProfileControllerDelegate: class {
+protocol ProfileControllerDelegate: AnyObject {
     func handleLogout()
 }
 
@@ -19,10 +19,10 @@ class ProfileViewController: UIViewController {
 
     let containerView       = CustomContainerView()
     let profileImageView    = ProfileImageView(frame: .zero)
-    let titleLabel          = TitleLabel(textAlignment: .center, fontSize: 27)
-    let fullNameLabel       = TitleLabel(textAlignment: .center, fontSize: 23)
+    let titleLabel          = TitleLabel(textAlignment: .center, fontSize: 30)
+    let fullNameLabel       = TitleLabel(textAlignment: .center, fontSize: ConstantFontSize.titleFontSize)
     let emailIdLabel        = BodyLabel(textAlignment: .center)
-    let LogoutButton        = CustomButton(backgroundColor: .systemPink, title: "Logout")
+    let LogoutButton        = CustomButton(backgroundColor: .systemPink, title: ConstantTitles.logout)
     
     var user: User? {
         didSet { populateUserData() }
@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
     private let dismissButton : UIButton = {
         let button       = UIButton()
         button.tintColor = .label
-        button.setImage(UIImage(systemName: "multiply.circle"),
+        button.setImage(ConstantImages.multiplyCircle,
                         for: .normal)
         button.imageView?.setDimensions(height: 28, width: 28)
         return button
@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private let termAndServiceButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button          = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Term And Service ",
                                                         attributes: [.font: UIFont.systemFont(ofSize: 16),
                                                                      .foregroundColor: UIColor.label])
@@ -87,7 +87,7 @@ class ProfileViewController: UIViewController {
     
     func configureTitleLabel() {
         containerView.addSubview(titleLabel)
-        titleLabel.text = "Google Keep"
+        titleLabel.text = ConstantHeader.mainheader
         titleLabel.centerX(inView: containerView)
         titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
                                             constant: 20).isActive = true
@@ -124,7 +124,8 @@ class ProfileViewController: UIViewController {
     
     func configureTermAndServiceButton(){
         containerView.addSubview(termAndServiceButton)
-        termAndServiceButton.addTarget(self, action: #selector(handlePrivacyTapped), for: .touchUpInside)
+        termAndServiceButton.addTarget(self, action: #selector(handlePrivacyTapped),
+                                       for: .touchUpInside)
         termAndServiceButton.anchor( bottom: containerView.bottomAnchor,
                                      right: containerView.rightAnchor,
                                      paddingBottom: 20,
@@ -133,7 +134,8 @@ class ProfileViewController: UIViewController {
     
     func configurePrivacyPolicyButton(){
         containerView.addSubview(privacyPolicyButton)
-        privacyPolicyButton.addTarget(self, action: #selector(handlePrivacyTapped), for: .touchUpInside)
+        privacyPolicyButton.addTarget(self, action: #selector(handlePrivacyTapped),
+                                      for: .touchUpInside)
         privacyPolicyButton.anchor(left: containerView.leftAnchor,
                                    bottom: containerView.bottomAnchor,
                                    paddingLeft: 32,
@@ -142,16 +144,27 @@ class ProfileViewController: UIViewController {
     
     func configureLogoutButton(){
         containerView.addSubview(LogoutButton)
-        LogoutButton.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        LogoutButton.anchor(left: containerView.leftAnchor, bottom: privacyPolicyButton.topAnchor, right: containerView.rightAnchor, paddingLeft: 40, paddingBottom: 10, paddingRight: 40, height: 50)
+        LogoutButton.addTarget(self, action: #selector(handleLogout),
+                               for: .touchUpInside)
+        LogoutButton.anchor(left: containerView.leftAnchor,
+                            bottom: privacyPolicyButton.topAnchor,
+                            right: containerView.rightAnchor,
+                            paddingLeft: 40,
+                            paddingBottom: 10,
+                            paddingRight: 40,
+                            height: 50)
 
     }
     
     func configureDissmissButton(){
         containerView.addSubview(dismissButton)
         dismissButton.addTarget(self, action: #selector(handleDismissal), for: .touchUpInside)
-        dismissButton.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, paddingTop: 20, paddingLeft: 20)
-        dismissButton.setDimensions(height: 28, width: 28)
+        dismissButton.anchor(top: containerView.topAnchor,
+                             left: containerView.leftAnchor,
+                             paddingTop: 20,
+                             paddingLeft: 20)
+        dismissButton.setDimensions(height: 28,
+                                    width: 28)
     }
     
     // MARK: - Functions
@@ -182,12 +195,12 @@ class ProfileViewController: UIViewController {
         
     @objc func handleLogout() {
         let alert = UIAlertController(title: nil, message: "Are you sure want to Logout", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "LogOut", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: ConstantTitles.logout, style: .destructive, handler: { _ in
             self.dismiss(animated: true) {
                 self.delegate?.handleLogout()
             }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: ConstantTitles.cancle, style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }

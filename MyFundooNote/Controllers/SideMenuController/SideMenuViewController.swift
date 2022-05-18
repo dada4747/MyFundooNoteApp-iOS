@@ -10,7 +10,7 @@ import UIKit
 class SideMenuViewController: UIViewController {
     private var headerView: UILabel = {
         let view = UILabel()
-        view.text = "Google Keeps"
+        view.text = ConstantHeader.mainheader
         view.textAlignment = .left
         view.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         view.shadowColor = .white
@@ -20,7 +20,8 @@ class SideMenuViewController: UIViewController {
 //        view.backgroundColor = .white
         return view
     }()
-
+    private var versionLabel = TitleLabel(textAlignment: .center, fontSize: 17)
+    
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,10 +68,10 @@ class SideMenuViewController: UIViewController {
 
     private func addSubviews() {
         view.addSubview(sideMenuView)
-//        sideMenuView.layer.cornerRadius = 40
         sideMenuView.backgroundColor = .systemBackground
         sideMenuView.addSubview(headerView)
         sideMenuView.addSubview(tableView)
+        sideMenuView.addSubview(versionLabel)
         configureConstraints()
     }
 
@@ -82,7 +83,7 @@ class SideMenuViewController: UIViewController {
         sideMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         headerView.topAnchor.constraint(equalTo: sideMenuView.topAnchor,constant: 40).isActive = true
-        headerView.leadingAnchor.constraint(equalTo: sideMenuView.leadingAnchor).isActive = true
+        headerView.leadingAnchor.constraint(equalTo: sideMenuView.leadingAnchor, constant: 40).isActive = true
         headerView.trailingAnchor.constraint(equalTo: sideMenuView.trailingAnchor).isActive = true
         headerView.heightAnchor.constraint(equalToConstant: 80).isActive = true
 
@@ -90,6 +91,11 @@ class SideMenuViewController: UIViewController {
         tableView.leadingAnchor.constraint(equalTo: sideMenuView.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: sideMenuView.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: sideMenuView.bottomAnchor).isActive = true
+        versionLabel.text = ConstantTitles.version
+        
+        versionLabel.anchor( left: sideMenuView.leftAnchor, bottom: sideMenuView.bottomAnchor, right: sideMenuView.rightAnchor, paddingLeft: 20, paddingBottom: 20, paddingRight: 20)
+        
+        
     }
 
     private func configureTableView() {

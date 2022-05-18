@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8445F101283214290001F3CD /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445F100283214290001F3CD /* DataPersistenceManager.swift */; };
+		8445F10D28324EEA0001F3CD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445F10C28324EEA0001F3CD /* LoadingViewController.swift */; };
+		8445F10F283258970001F3CD /* ShowErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445F10E283258970001F3CD /* ShowErrorAlert.swift */; };
+		8445F111283262C10001F3CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445F110283262C10001F3CD /* Constants.swift */; };
 		848123C4282790E500BB640E /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848123C3282790E500BB640E /* AddReminderViewController.swift */; };
 		848A047D281C6984008F6E66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047C281C6984008F6E66 /* AppDelegate.swift */; };
 		848A047F281C6984008F6E66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A047E281C6984008F6E66 /* SceneDelegate.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		36C8321EB1F0FCD7788BBB89 /* Pods-MyFundooNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.debug.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.debug.xcconfig"; sourceTree = "<group>"; };
 		507C3B21348810A97DF96555 /* Pods-MyFundooNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFundooNote.release.xcconfig"; path = "Target Support Files/Pods-MyFundooNote/Pods-MyFundooNote.release.xcconfig"; sourceTree = "<group>"; };
+		8445F100283214290001F3CD /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		8445F10C28324EEA0001F3CD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		8445F10E283258970001F3CD /* ShowErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowErrorAlert.swift; sourceTree = "<group>"; };
+		8445F110283262C10001F3CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		848123C3282790E500BB640E /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 		848A0479281C6984008F6E66 /* MyFundooNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFundooNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A047C281C6984008F6E66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +122,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8445F10B283241170001F3CD /* CoreDataObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreDataObjects;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8475EC9C2833AB0200635745 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				8445F10E283258970001F3CD /* ShowErrorAlert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		848A0470281C6984008F6E66 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +159,8 @@
 		848A047B281C6984008F6E66 /* MyFundooNote */ = {
 			isa = PBXGroup;
 			children = (
+				8445F110283262C10001F3CD /* Constants.swift */,
+				8445F10B283241170001F3CD /* CoreDataObjects */,
 				84DF38AF28252823008E4470 /* Supports */,
 				848A04C4281EA9B0008F6E66 /* Composer */,
 				848A04B2281E810F008F6E66 /* Services */,
@@ -183,6 +209,7 @@
 		848A04A7281C7769008F6E66 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8475EC9C2833AB0200635745 /* Alert */,
 				84DF38AD28251AB3008E4470 /* Cell */,
 				84968A8C282515F40025CF9A /* Buttons */,
 				84968A8B282515E20025CF9A /* Labels */,
@@ -191,6 +218,7 @@
 				84968A872824D7DD0025CF9A /* CustomTextView.swift */,
 				848A04A5281C7732008F6E66 /* CustomTextField.swift */,
 				84EE2608282D1E0E0033E4FE /* PinterestLayout.swift */,
+				8445F10C28324EEA0001F3CD /* LoadingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +228,7 @@
 			children = (
 				848A0496281C6BA5008F6E66 /* AuthService.swift */,
 				848A04D2281FD15E008F6E66 /* FirebaseNoteService.swift */,
+				8445F100283214290001F3CD /* DataPersistenceManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -244,8 +273,8 @@
 		848A04CF281F975D008F6E66 /* AuthControllers */ = {
 			isa = PBXGroup;
 			children = (
-				848A049C281C7479008F6E66 /* RegistrationViewController.swift */,
 				848A049A281C7465008F6E66 /* LoginViewController.swift */,
+				848A049C281C7479008F6E66 /* RegistrationViewController.swift */,
 			);
 			path = AuthControllers;
 			sourceTree = "<group>";
@@ -434,7 +463,9 @@
 				848A04C8281EAA9E008F6E66 /* SettingsViewController.swift in Sources */,
 				848A04BF281EA921008F6E66 /* ContentViewController.swift in Sources */,
 				849114E02824760300D4C04F /* CustomButton.swift in Sources */,
+				8445F111283262C10001F3CD /* Constants.swift in Sources */,
 				848A04A6281C7732008F6E66 /* CustomTextField.swift in Sources */,
+				8445F101283214290001F3CD /* DataPersistenceManager.swift in Sources */,
 				848A04D928201981008F6E66 /* NotesCell.swift in Sources */,
 				848A04C6281EA9D8008F6E66 /* ContainerViewComposer.swift in Sources */,
 				848A04CE281EAB9E008F6E66 /* AboutViewController.swift in Sources */,
@@ -459,11 +490,13 @@
 				848A04A4281C768B008F6E66 /* Extension.swift in Sources */,
 				848A04C3281EA970008F6E66 /* ContainerViewController.swift in Sources */,
 				848A04BC281E93B5008F6E66 /* SideMenuItemCell.swift in Sources */,
+				8445F10F283258970001F3CD /* ShowErrorAlert.swift in Sources */,
 				848A04CC281EAAD0008F6E66 /* RemindersViewController.swift in Sources */,
 				848A049D281C7479008F6E66 /* RegistrationViewController.swift in Sources */,
 				848A04BA281E9392008F6E66 /* SideMenuItem.swift in Sources */,
 				848A047D281C6984008F6E66 /* AppDelegate.swift in Sources */,
 				848A047F281C6984008F6E66 /* SceneDelegate.swift in Sources */,
+				8445F10D28324EEA0001F3CD /* LoadingViewController.swift in Sources */,
 				848A049F281C7603008F6E66 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

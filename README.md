@@ -36,21 +36,15 @@
 - local reminders working 
 - check internet availability
 - Core Data for offline support 
-
-
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 22 34](https://user-images.githubusercontent.com/44098385/169827645-6c6eda4d-9bca-4750-8c37-77c3f83c6400.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 22 38](https://user-images.githubusercontent.com/44098385/169827652-f58c2bc5-4a09-4cda-a353-c3d65ec74599.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 24 50](https://user-images.githubusercontent.com/44098385/169827802-aaa39359-7ede-4c2d-b5f6-0780d30a67b4.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 36 12](https://user-images.githubusercontent.com/44098385/169827817-73b0830d-60ae-4939-94cc-77de1e4ca925.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 36 14](https://user-images.githubusercontent.com/44098385/169827826-f23e9cc2-101a-4c38-967f-0a66a71fb6fb.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 36 25](https://user-images.githubusercontent.com/44098385/169827842-b63cb0e7-aac7-4f67-81f2-63a65faccf42.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 36 29](https://user-images.githubusercontent.com/44098385/169827849-e43d61df-5b60-41c7-8c2d-b53ccc6527c2.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 08](https://user-images.githubusercontent.com/44098385/169827869-4f30f9a6-5d82-43a2-b257-9b26966e6e82.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 16](https://user-images.githubusercontent.com/44098385/169827876-48370c98-8ff4-4277-a102-251cc768e19b.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 20](https://user-images.githubusercontent.com/44098385/169827881-c33dcb93-2528-4b27-a357-356c890fcca9.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 27](https://user-images.githubusercontent.com/44098385/169827888-07cf18ef-e43c-435e-abb5-6763d9f87fd6.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 32](https://user-images.githubusercontent.com/44098385/169827902-a7ea28ca-c97d-4cd3-bdea-aa770b4f4897.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 54](https://user-images.githubusercontent.com/44098385/169830305-eeb4024d-4229-416d-bd35-726d228fbbc0.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 38 07](https://user-images.githubusercontent.com/44098385/169830316-24c1a712-2cba-4d0a-a125-a39e3e508022.png)
-![Simulator Screen Shot - iPhone 11 Pro - 2022-05-23 at 18 37 42](https://user-images.githubusercontent.com/44098385/169830280-217ecd6c-5723-4c02-abc4-286d0d12d7f5.png)
-
+- 
+Light Mode                 |  Dark Mode
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/44098385/169831460-e5319d13-e25a-4b0b-982e-eb7879732256.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169832887-a0153823-2dcd-4a83-bed4-fc8357dc18a8.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169831713-4f036016-b20b-4a22-a5d8-4a320888a8d1.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169833029-4ada8833-a8a6-4f78-83a3-fcb2985caefc.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169833477-40a14250-1de8-412c-9fdc-4aaaae6b2836.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169833591-a95a34f2-8f4b-488a-8009-4cc44dab12e0.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169834153-49543ff3-0dad-44e2-b70a-8fdf7b540399.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169834175-5e1cb6c0-af36-45ab-8271-fe0250be200f.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169834397-e2fa5461-8b66-4acf-af8a-dd419e56a9a1.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169834549-8ba2e6d9-edbc-4f92-9ce3-f405d4a0a491.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169834853-e068e578-d7bd-444d-99b3-4e4bd145fec6.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169834957-34ecc3d7-ff40-4505-9b1b-535bdd0de8b2.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169835282-320ac897-2f06-4130-8fbc-bacd211ffda0.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169835308-e20f3490-9433-414c-bff5-dedf8abebf3c.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169835540-2b681ad0-ab59-4cca-aeef-f9c715c9f39f.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169835557-1f9e918f-8c16-46fb-83f9-94a67c4930d3.png" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/44098385/169835629-fd488bad-d965-4130-aa27-da7d1a4384a1.png" width="250" height="500"/> | <img src="https://user-images.githubusercontent.com/44098385/169835640-31964505-e321-4ea2-87c4-3f3ac1a76b00.png" width="250" height="500"/>

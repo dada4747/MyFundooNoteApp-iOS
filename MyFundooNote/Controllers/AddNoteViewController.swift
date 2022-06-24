@@ -217,6 +217,15 @@ class AddNoteViewController: UIViewController {
     }
     
     @objc func handleUnArchiveTapped(){
+//        DataPersistanceManager.shared.updateWith(model: note!) { result in
+//            switch result {
+//            case .success(let result):
+//                print("*********************************")
+//                print(result)
+//            case.failure(let err):
+//                print(err)
+//            }
+//        }
         handleBackButton()
     }
     @objc func handleArchiveTapped(){

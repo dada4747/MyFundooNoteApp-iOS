@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="NoteItem" representedClassName="NoteItem" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="desc" optional="YES" attributeType="String"/>
+    <entity name="NoteItem" representedClassName="NoteItem" syncable="YES" codeGenerationType="class">
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="discription" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isArchive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isNote" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isReminder" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
-    </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="fullname" optional="YES" attributeType="String"/>
-        <attribute name="profileImageUrl" optional="YES" attributeType="String"/>
-        <attribute name="uid" optional="YES" attributeType="String"/>
-        <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteItem"/>
     </entity>
     <elements>
-        <element name="NoteItem" positionX="-63" positionY="-18" width="128" height="14"/>
-        <element name="User" positionX="-54" positionY="45" width="128" height="14"/>
+        <element name="NoteItem" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

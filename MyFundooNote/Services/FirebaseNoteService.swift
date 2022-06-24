@@ -17,12 +17,7 @@ class FirebaseNotsService {
     static var shared   = FirebaseNotsService()
     private init(){}
     
-//    func writeToFirebase(title: String,description: String,isRemainder: Bool,isArchieved:Bool, isNote:Bool) {
-//        let data:[String: Any] = ["title": title , "Description": description,"created":Timestamp.init(date: Date()),"isRemainder":isRemainder,"isArchieved":isArchieved, "isNote": isNote]
-//        guard let uid = Auth.auth().currentUser?.uid else { return print("Error in saving user id") }
-//        Firestore.firestore().collection("Notes").document(uid).collection("note").addDocument(data: data)
-//    }
-    
+
     func fetchNotes(complition: @escaping([NoteModel])-> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let query = db.collection("Notes").document(uid).collection("note").whereField("isArchieved", isEqualTo: false).order(by: "created", descending: true).limit(to: 10)

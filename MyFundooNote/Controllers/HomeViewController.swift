@@ -13,6 +13,7 @@ class HomeViewController: ContentViewController {
     // MARK: - Variable Declaration
     var notes           :[NoteModel]?    = []
     var filteredNotes   : [NoteModel]    = []
+    var resultDb : [NoteItem]? = []
     
     let addNoteButton : UIButton = {
         let button                  = UIButton()
@@ -34,13 +35,36 @@ class HomeViewController: ContentViewController {
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {             layout.delegate = self
         }
         fetchNotes()
-        searchController.searchBar.placeholder                   = ConstantPlaceholders.searchNotes
+        searchController.searchBar.placeholder  = ConstantPlaceholders.searchNotes
         searchController.searchResultsUpdater   = self
         searchController.searchBar.delegate     = self
         collectionView.dataSource               = self
         collectionView.delegate                 = self
         configureAddNoteButton()
-        
+//        DataPersistanceManager.shared.fetchFromDB { result in
+//            switch result {
+//            case .success(let result):
+//                print(result.first?.title)
+//                self.resultDb = result
+//                print(self.resultDb)
+////                self.notes?.append(result)
+//            case.failure(let err):
+//                print(err.localizedDescription)
+//            }
+//        }
+//        DataPersistanceManager.shared.deleteNoteFromDB(id: (resultDb?.first?.id)!) { r in
+//            switch r {
+//            case .success(let r):
+//                print("*******************+++++++++********************")
+//
+//                print("delete successful")
+//            case .failure(let err):
+//
+//                print(err)
+//            }
+//        
+//        }
+//        
     }
     
     override func viewWillAppear(_ animated: Bool) {

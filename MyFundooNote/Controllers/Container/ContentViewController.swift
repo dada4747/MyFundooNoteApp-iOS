@@ -96,6 +96,7 @@ class ContentViewController: UIViewController {
     }
     
     func presentLoginScreen() {
+        
         DispatchQueue.main.async {
             let controller = LoginViewController()
             let nav = UINavigationController(rootViewController: controller)
